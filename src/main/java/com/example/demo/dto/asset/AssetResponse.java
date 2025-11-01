@@ -20,13 +20,14 @@ public class AssetResponse {
     private Long id;
     private String code;
     private String name;
-    private String type;
-    private String assignedTo;
+    private Long typeId;
+    private Long departmentId;
+    private Long assignedTo;
     private Date purchaseDate;
     private BigDecimal value;
     private AssetStatus status;
     private AssetCondition condition;
     private String description;
-    private String createdBy;
+    private Long createdBy;
     private Instant createdAt;
 }

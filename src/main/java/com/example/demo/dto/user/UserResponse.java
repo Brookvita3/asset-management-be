@@ -14,7 +14,7 @@ public class UserResponse {
     private Long id;
     private String name;
     private String email;
-    private String departmentName;
+    private Long departmentId;
     private String role;
     private Boolean active;
 
@@ -23,7 +23,7 @@ public class UserResponse {
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
-                .departmentName(user.getDepartment().getName())
+                .departmentId(user.getDepartment().getId())
                 .role(user.getRole().toString())
                 .active(user.getActive())
                 .build();

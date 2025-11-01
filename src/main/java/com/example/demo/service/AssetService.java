@@ -59,8 +59,11 @@ public class AssetService {
                 AssetType type = assetTypeRepository.findById(assetRequest.getTypeId())
                                 .orElseThrow(() -> new DataNotFound("Asset type not found"));
 
-                User user = userRepository.findById(assetRequest.getAssignedTo())
-                                .orElseThrow(() -> new DataNotFound("User not found"));
+                User user = null;
+                if (assetRequest.getAssignedTo() != 0) {
+                        user = userRepository.findById(assetRequest.getAssignedTo())
+                                        .orElseThrow(() -> new DataNotFound("User not found"));
+                }
 
                 asset.setCode(assetRequest.getCode());
                 asset.setName(assetRequest.getName());
@@ -92,14 +95,16 @@ public class AssetService {
                                 .id(asset.getId())
                                 .code(asset.getCode())
                                 .name(asset.getName())
-                                .type(type.getName())
-                                .assignedTo(asset.getAssignedTo() == null ? null : asset.getAssignedTo().getName())
+                                .typeId(type.getId())
+                                .assignedTo(asset.getAssignedTo() == null ? null : asset.getAssignedTo().getId())
+                                .departmentId(asset.getAssignedTo() == null ? null
+                                                : asset.getAssignedTo().getDepartment().getId())
                                 .purchaseDate(asset.getPurchaseDate())
                                 .value(asset.getValue())
                                 .status(asset.getStatus())
                                 .condition(asset.getCondition())
                                 .description(asset.getDescription())
-                                .createdBy(asset.getCreatedBy().getName())
+                                .createdBy(asset.getCreatedBy() == null ? null : asset.getCreatedBy().getId())
                                 .createdAt(asset.getCreatedAt())
                                 .build();
         }
@@ -110,14 +115,16 @@ public class AssetService {
                                 .id(asset.getId())
                                 .code(asset.getCode())
                                 .name(asset.getName())
-                                .type(asset.getType().getName())
-                                .assignedTo(asset.getAssignedTo() == null ? null : asset.getAssignedTo().getName())
+                                .typeId(asset.getType().getId())
+                                .assignedTo(asset.getAssignedTo() == null ? null : asset.getAssignedTo().getId())
+                                .departmentId(asset.getAssignedTo() == null ? null
+                                                : asset.getAssignedTo().getDepartment().getId())
                                 .purchaseDate(asset.getPurchaseDate())
                                 .value(asset.getValue())
                                 .status(asset.getStatus())
                                 .condition(asset.getCondition())
                                 .description(asset.getDescription())
-                                .createdBy(asset.getCreatedBy() == null ? null : asset.getCreatedBy().getName())
+                                .createdBy(asset.getCreatedBy() == null ? null : asset.getCreatedBy().getId())
                                 .createdAt(asset.getCreatedAt())
                                 .build()).toList();
         }
