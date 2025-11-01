@@ -1,0 +1,255 @@
+Hướng dẫn Sử dụng Hệ thống Quản lý Tài Sản
+
+Dành cho Quản trị viên (Admin)
+
+Quản trị viên hệ thống (Admin) có quyền quản lý cao nhất trong hệ thống. Admin chịu trách nhiệm cấu hình các thông tin nền tảng và có thể thực hiện mọi chức năng như quản lý người dùng, phòng ban, tài sản, và xem báo cáo tổng thể. Dưới đây là các bước hướng dẫn cho Admin:
+
+1. Quản lý Vai trò (Roles)
+
+Admin có thể tạo mới, chỉnh sửa hoặc vô hiệu hóa các vai trò người dùng trong hệ thống.
+
+Truy cập trang Vai trò: Đăng nhập với quyền Admin, vào menu “Quản lý Hệ thống” và chọn “Vai trò”. Hệ thống sẽ hiển thị danh sách các vai trò hiện có (bao gồm Tên vai trò, Mô tả và Trạng thái hoạt động).
+
+Thêm vai trò mới: Nhấn “Tạo vai trò mới”, sau đó nhập Tên vai trò (ví dụ: “Staff”, “Manager”, “Admin”), mô tả vai trò (tùy chọn). Tiếp theo, chọn các quyền hạn (permissions) tương ứng cho vai trò này (ví dụ: quyền quản lý người dùng, quyền tạo tài sản, quyền xem báo cáo,...). Nhấn “Lưu” để tạo vai trò. Lưu ý: Tên vai trò không được trùng lặp với vai trò đã có. Nếu tên bị trùng, hệ thống sẽ báo lỗi yêu cầu nhập tên khác.
+
+Chỉnh sửa vai trò: Trong danh sách vai trò, chọn vai trò cần sửa và nhấn “Sửa”. Thay đổi thông tin tên, mô tả hoặc cập nhật lại quyền hạn được gán cho vai trò. Nhấn “Lưu” để lưu thay đổi. Hệ thống sẽ cập nhật thông tin mới cho vai trò.
+
+Vô hiệu hóa vai trò: Chọn một vai trò và nhấn “Vô hiệu hóa” nếu muốn ngừng sử dụng vai trò đó. Hệ thống sẽ yêu cầu xác nhận; chọn đồng ý để tiếp tục. Sau khi xác nhận, vai trò sẽ được đánh dấu là “Đã vô hiệu hóa” và không thể gán cho người dùng mới nữa. (Lưu ý: Vai trò mặc định “Admin” của hệ thống không thể bị vô hiệu hóa để đảm bảo luôn có quản trị viên.)
+
+Lưu ý: Mỗi vai trò phải có tên duy nhất (không phân biệt chữ hoa/thường). Hệ thống sẽ không cho phép tạo hai vai trò trùng tên. Ngoài ra, vai trò bị vô hiệu hóa vẫn được lưu trong hệ thống (không xóa hẳn để bảo toàn dữ liệu lịch sử), nhưng sẽ không xuất hiện trong danh sách lựa chọn khi tạo người dùng mới.
+
+2. Quản lý Người dùng (Users)
+
+Admin có quyền tạo tài khoản người dùng mới, chỉnh sửa thông tin tài khoản, gán vai trò/phòng ban cho người dùng, hoặc vô hiệu hóa tài khoản khi cần thiết.
+
+Truy cập trang Người dùng: Vào menu “Quản lý Người dùng”. Hệ thống hiển thị danh sách tất cả người dùng hiện có với các thông tin: Họ tên, Email, Phòng ban, Vai trò, Trạng thái (Hoạt động hoặc Vô hiệu hóa).
+
+Thêm người dùng mới: Nhấn “Tạo người dùng mới”. Nhập các thông tin bắt buộc:
+
+Họ và tên của người dùng.
+
+Email của người dùng (phải là email hợp lệ và chưa tồn tại trong hệ thống).
+
+Chọn Vai trò cho người dùng (từ danh sách các vai trò có sẵn).
+
+Chọn Phòng ban mà người dùng thuộc vào (từ danh sách phòng ban có sẵn).
+
+Sau khi điền đầy đủ, nhấn “Lưu” để tạo tài khoản. Hệ thống sẽ lưu người dùng mới với trạng thái mặc định “Hoạt động”. (Tài khoản mới có thể được gửi email kích hoạt hoặc mật khẩu tạm thời để người dùng đăng nhập lần đầu, tùy theo cấu hình hệ thống).
+
+Chỉnh sửa người dùng: Trong danh sách, chọn người dùng cần chỉnh sửa và nhấn “Sửa”. Thay đổi các thông tin cần thiết như họ tên, vai trò, hoặc phòng ban của người dùng đó. Lưu ý: Địa chỉ email thường không thể thay đổi sau khi đã tạo tài khoản. Sau khi chỉnh sửa, nhấn “Lưu” để cập nhật. Hệ thống sẽ ghi nhận các thay đổi (ví dụ: người dùng được chuyển sang phòng ban khác hoặc đảm nhiệm vai trò khác).
+
+Vô hiệu hóa/Kích hoạt lại người dùng: Nếu muốn tạm ngưng quyền truy cập của một người dùng, chọn tài khoản đó và nhấn “Vô hiệu hóa”. Xác nhận khi hệ thống yêu cầu. Người dùng bị vô hiệu hóa sẽ không thể đăng nhập vào hệ thống cho đến khi được kích hoạt lại. (Tài khoản không bị xóa hẳn để bảo toàn dữ liệu liên quan, chỉ chuyển sang trạng thái ngừng hoạt động). Để kích hoạt lại một tài khoản đã vô hiệu, Admin có thể thực hiện thao tác tương tự (chọn “Kích hoạt” nếu có tùy chọn, hoặc thao tác ngược lại của việc vô hiệu hóa).
+
+Lưu ý: Khi tạo hoặc chỉnh sửa người dùng, hệ thống bắt buộc phải gán mỗi người dùng vào một phòng ban cụ thể và một vai trò cụ thể. Email người dùng phải là duy nhất trong hệ thống – nếu nhập email trùng với người đã tồn tại, hệ thống sẽ báo lỗi. Admin không thể tự vô hiệu hóa tài khoản của chính mình (để tránh trường hợp không còn ai có quyền quản trị hệ thống). Nếu cần ngừng tài khoản Admin đó, phải có một Admin khác thực hiện.
+
+3. Quản lý Phòng ban (Departments)
+
+Admin có thể thêm mới phòng ban, chỉnh sửa thông tin hoặc vô hiệu hóa phòng ban trong hệ thống. Phòng ban giúp nhóm các tài sản và người dùng theo cơ cấu tổ chức.
+
+Truy cập trang Phòng ban: Vào menu “Quản lý Hệ thống” và chọn “Phòng ban”. Hệ thống sẽ hiển thị danh sách các phòng ban hiện có, sắp xếp theo thứ tự chữ cái. Mỗi mục bao gồm tên phòng ban, mô tả (nếu có) và trạng thái (Hoạt động hoặc Đã vô hiệu hóa).
+
+Thêm phòng ban mới: Nhấn “Thêm phòng ban”. Nhập Tên phòng ban (bắt buộc, ví dụ: “Phòng Kỹ thuật”, “Phòng Nhân sự”...) và phần Mô tả (mô tả chức năng hoặc ghi chú về phòng ban, nếu cần). Nhấn “Lưu” để tạo. Phòng ban mới sẽ được thêm vào danh sách với trạng thái Hoạt động. (Lưu ý: Tên phòng ban phải là duy nhất. Nếu trùng tên với phòng ban đã có, hệ thống sẽ không cho phép tạo và hiển thị thông báo lỗi.)
+
+Chỉnh sửa phòng ban: Chọn phòng ban cần sửa và nhấn “Sửa”. Cập nhật tên hoặc mô tả phòng ban theo nhu cầu. Sau đó nhấn “Lưu”. Danh sách phòng ban sẽ hiển thị thông tin mới (và tự động sắp xếp lại theo thứ tự ABC nếu tên bị thay đổi).
+
+Vô hiệu hóa phòng ban: Nếu một phòng ban không còn sử dụng (hoặc muốn ngừng quản lý), Admin chọn phòng ban đó và nhấn “Vô hiệu hóa”. Xác nhận khi được hỏi. Hệ thống sẽ đánh dấu phòng ban này là Đã vô hiệu hóa. Phòng ban bị vô hiệu hóa sẽ không xuất hiện trong các lựa chọn khi tạo hoặc cập nhật người dùng mới nữa. (Lưu ý: Hệ thống sẽ không cho phép vô hiệu hóa một phòng ban nếu vẫn còn nhân viên Hoạt động thuộc phòng ban đó. Trong trường hợp đó, Admin cần chuyển hoặc vô hiệu hóa tất cả nhân viên của phòng ban trước, sau đó mới vô hiệu hóa được phòng ban.) Việc vô hiệu hóa chỉ là tạm ngưng; dữ liệu lịch sử vẫn được giữ lại để không ảnh hưởng đến các bản ghi tài sản hoặc lịch sử sử dụng trước đây.
+
+4. Quản lý Loại tài sản (Asset Types)
+
+Loại tài sản giúp phân loại tài sản (ví dụ: Laptop, Điện thoại, Bàn ghế, Máy móc, v.v.). Việc quản lý loại tài sản thường do Admin thực hiện nhằm thiết lập danh mục các loại thiết bị/tài sản trong công ty.
+
+Truy cập trang Loại tài sản: Vào menu “Quản lý Tài sản” (hoặc “Quản lý Hệ thống” tùy theo thiết kế) và chọn “Loại tài sản”. Màn hình liệt kê các loại tài sản hiện có cùng mô tả (nếu có).
+
+Thêm loại tài sản: Nhấn “Thêm loại tài sản”. Nhập Tên loại (vd: “Laptop”, “Điện thoại thông minh”, “Xe nâng”,...). Nhập mô tả chi tiết hơn nếu cần (ví dụ: định nghĩa phạm vi loại tài sản này). Nhấn “Lưu” để tạo mới. Loại tài sản mới sẽ có sẵn để chọn khi nhập tài sản.
+
+Chỉnh sửa/Xóa loại tài sản: (Tùy thuộc vào thiết kế, Admin có thể chỉnh tên loại tài sản hoặc vô hiệu hóa nếu không dùng nữa). Chọn loại tài sản cần chỉnh sửa và nhấn “Sửa”, thực hiện thay đổi rồi “Lưu”. Nếu muốn gỡ bỏ loại tài sản khỏi danh mục, chọn “Vô hiệu hóa/Xóa” và xác nhận. (Lưu ý: Nếu trong hệ thống đang có tài sản thuộc loại này, thường hệ thống sẽ không cho xóa hẳn mà chỉ có thể vô hiệu hóa để giữ lịch sử.)
+
+Sau khi cấu hình xong Vai trò, Người dùng, Phòng ban và Loại tài sản, Admin đã thiết lập xong dữ liệu nền tảng. Tiếp theo là các chức năng quản lý tài sản cụ thể:
+
+5. Thêm mới Tài sản vào hệ thống
+
+Admin có quyền thêm tài sản vào bất kỳ phòng ban nào. Khi công ty có tài sản mới (mua sắm thêm thiết bị, cơ sở vật chất), Admin có thể cập nhật vào hệ thống:
+
+Truy cập trang Tài sản: Vào menu “Quản lý Tài sản” (hoặc “Danh sách Tài sản”). Trang này hiển thị danh sách tất cả tài sản trong hệ thống kèm các thông tin chính (Tên tài sản, Mã tài sản, Loại, Trạng thái, Người đang sử dụng, Phòng ban sở hữu,...).
+
+Thêm tài sản mới: Nhấn “Thêm tài sản mới”. Hệ thống sẽ mở form để nhập thông tin tài sản. Điền các trường sau:
+
+Tên tài sản: Tên gọi thiết bị/tài sản (VD: “Laptop Dell XPS 13”, “Điện thoại iPhone 13”, “Máy in Laser Canon 2900”).
+
+Mã tài sản: Mã định danh duy nhất cho tài sản, thường viết tắt hoặc mã số (VD: “TS-001”, “LAB-2025-0001”). Lưu ý: Mã tài sản phải duy nhất, không được trùng với mã của tài sản nào đã có. Hệ thống sẽ kiểm tra và báo lỗi nếu trùng. Mã chỉ gồm chữ và số (không chứa khoảng trắng).
+
+Ngày mua: Ngày mua hoặc ngày tiếp nhận tài sản. Chọn từ lịch (datepicker). Lưu ý: Ngày mua không được ở tương lai; chỉ chọn ngày hôm nay hoặc ngày trong quá khứ.
+
+Giá trị: Giá trị của tài sản (ví dụ: giá mua vào, hoặc giá trị ước tính hiện tại). Nhập số (đơn vị VNĐ hoặc đơn vị tiền tệ công ty quy định). Giá trị phải lớn hơn 0 và đúng định dạng số.
+
+Loại tài sản: Chọn loại phù hợp từ danh sách thả xuống (các loại do Admin đã tạo, ví dụ: Laptop, Điện thoại, Nội thất...). Đây là trường bắt buộc.
+
+Phòng ban sở hữu: (Trường này xuất hiện nếu bạn là Admin) Chọn phòng ban sẽ sở hữu quản lý tài sản này. Admin có thể chọn bất kỳ phòng ban nào từ danh sách. Đối với Trưởng phòng (Manager) thì trường này có thể tự động chọn là phòng ban của họ và không cho thay đổi.
+
+Hình ảnh: (Tùy chọn) Có thể tải lên một ảnh đại diện cho tài sản (ảnh chụp thiết bị, số serial, biên bản bàn giao, v.v.). Chấp nhận định dạng JPG, PNG, kích thước file dưới giới hạn cho phép (ví dụ 5MB).
+
+Sau khi điền đầy đủ, nhấn “Lưu” để tạo tài sản. Hệ thống sẽ kiểm tra tính hợp lệ của dữ liệu (báo lỗi nếu thiếu trường bắt buộc hoặc sai định dạng). Nếu hợp lệ, tài sản mới được lưu vào hệ thống với trạng thái mặc định “Trong kho” (chưa cấp phát cho ai) và được gắn với phòng ban đã chọn. Bạn có thể thấy tài sản vừa tạo xuất hiện trong danh sách.
+
+Lưu ý: Mã tài sản sau khi tạo không thể chỉnh sửa (để đảm bảo tính toàn vẹn dữ liệu). Các thông tin khác có thể cập nhật sau này (trừ mã và có thể trừ phòng ban sở hữu nếu hệ thống không cho phép đổi phòng ban).
+
+6. Chỉnh sửa thông tin Tài sản
+
+Nếu cần cập nhật thay đổi thông tin tài sản (ví dụ: chỉnh sửa tên, giá trị, hoặc cập nhật ảnh mới), Admin có thể thực hiện như sau:
+
+Tại trang Danh sách Tài sản, tìm tài sản cần chỉnh sửa (có thể cuộn danh sách, dùng ô tìm kiếm theo tên/mã, hoặc lọc theo phòng ban/loại).
+
+Nhấn vào tài sản đó để xem chi tiết, sau đó chọn nút “Sửa” (hoặc biểu tượng chỉnh sửa) trên màn hình chi tiết tài sản.
+
+Cập nhật các thông tin cần thay đổi trên form. Lưu ý những trường không cho phép thay đổi: Mã tài sản (cố định sau khi tạo). Nếu có trường Phòng ban sở hữu và bạn muốn chuyển tài sản sang phòng ban khác, cần xem hệ thống có hỗ trợ không – thông thường Admin có thể thay đổi phòng ban nếu tài sản chưa được cấp phát hoặc trong trường hợp điều chuyển đặc biệt.
+
+Sau khi chỉnh sửa, nhấn “Lưu” để cập nhật. Hệ thống sẽ lưu lại các thay đổi. Những thay đổi này cũng sẽ được ghi nhận vào lịch sử tài sản (xem phần Lịch sử Thay đổi bên dưới) để sau này có thể tra cứu ai đã chỉnh sửa gì, khi nào.
+
+7. Gán tài sản cho nhân viên (Cấp phát tài sản)
+
+Khi có tài sản đang ở trạng thái “Trong kho” và muốn cấp phát cho một nhân viên sử dụng, Admin thực hiện gán tài sản:
+
+Trong danh sách tài sản, xác định tài sản cần gán (phải có trạng thái “Trong kho” thì mới gán được). Bạn có thể dùng bộ lọc trạng thái để lọc nhanh các tài sản chưa cấp phát.
+
+Nhấp chọn tài sản đó, sau đó chọn chức năng “Gán tài sản” (thường dưới dạng nút hoặc menu thao tác). Một cửa sổ hoặc biểu mẫu gán tài sản sẽ hiện ra.
+
+Chọn phòng ban và nhân viên: Trước tiên chọn Phòng ban nơi nhân viên nhận tài sản đang công tác (điều này giúp lọc danh sách nhân viên). Tiếp theo, chọn Tên nhân viên cụ thể từ danh sách nhân viên của phòng ban đó. (Đối với Admin, bạn có thể gán tài sản cho bất kỳ nhân viên nào trong bất kỳ phòng ban nào. Đối với Trưởng phòng, chỉ phòng ban của họ mới có sẵn ở đây.)
+
+Ngày gán: Nhập hoặc chọn ngày hiệu lực gán tài sản (mặc định có thể là ngày hiện tại). Ngày này để lưu vào lịch sử rằng từ ngày đó nhân viên bắt đầu sử dụng tài sản.
+
+Xác nhận bằng cách nhấn “Xác nhận” hoặc “Gán”. Hệ thống sẽ cập nhật trạng thái tài sản:
+
+Người đang sử dụng hiện tại (Current User) của tài sản được ghi nhận là nhân viên vừa chọn.
+
+Trạng thái tài sản chuyển thành “Đang sử dụng” (tức là tài sản hiện đang được nhân viên sử dụng).
+
+Kết quả: Tài sản bây giờ sẽ hiển thị tên người sử dụng và phòng ban tương ứng trên danh sách. Nhân viên được gán sẽ thấy tài sản trong danh sách tài sản của họ (khi họ đăng nhập, nếu họ có quyền xem). Đồng thời, hệ thống tạo một bản ghi lịch sử ghi lại việc Admin đã gán tài sản cho nhân viên nào, vào thời gian nào.
+
+Lưu ý: Mỗi tài sản tại một thời điểm chỉ gán cho một nhân viên duy nhất. Nếu tài sản đang “Trong kho” mới có thể gán; hệ thống sẽ không cho phép gán nếu tài sản đang được sử dụng hoặc đã hỏng/lỗi thời. (Nút “Gán tài sản” sẽ bị vô hiệu hóa hoặc ẩn nếu không áp dụng được). Trong trường hợp cần đổi người sử dụng, trước hết phải thu hồi tài sản từ người hiện tại (xem bước Thu hồi bên dưới), sau đó mới gán cho người khác.
+
+8. Thu hồi tài sản từ nhân viên (Thu hồi về kho)
+
+Khi một nhân viên trả lại tài sản (ví dụ: nhân viên chuyển bộ phận, nghỉ việc, hoặc tài sản cần thu hồi để bảo trì), Admin có thể thu hồi tài sản trên hệ thống để cập nhật trạng thái về “Trong kho”:
+
+Tìm tài sản cần thu hồi trong danh sách (có trạng thái “Đang sử dụng” và hiển thị đang gán cho ai). Bạn có thể lọc theo tên nhân viên hoặc trạng thái Đang sử dụng để tìm nhanh.
+
+Nhấp chọn tài sản đó, sau đó chọn chức năng “Thu hồi”. Hệ thống sẽ yêu cầu xác nhận việc thu hồi.
+
+Xác nhận đồng ý thu hồi. (Nếu có trường nhập Ngày thu hồi, chọn ngày tương ứng, thường mặc định là ngày hiện tại).
+
+Sau khi xác nhận, hệ thống sẽ cập nhật:
+
+Xóa thông tin Người đang sử dụng của tài sản (tức là tài sản không còn gán cho ai).
+
+Đặt Trạng thái tài sản trở lại “Trong kho”.
+
+Kết quả: Tài sản hiện không gán cho nhân viên nào và sẵn sàng cho đợt cấp phát tiếp theo. Lịch sử tài sản cũng ghi nhận thông tin người đã thu hồi (Admin) và thời điểm thu hồi.
+
+Lưu ý: Thu hồi tài sản chỉ cập nhật trong hệ thống. Admin nên đảm bảo tài sản thực tế được nhân viên bàn giao lại (ví dụ thu lại laptop, phụ kiện, v.v.). Sau khi thu hồi, nếu tài sản cần sửa chữa hoặc đánh giá, Admin hoặc Trưởng phòng có thể cập nhật trạng thái tài sản (xem phần Đánh giá tài sản). Trường hợp nhân viên nghỉ việc, việc thu hồi nên thực hiện trước khi xóa/vô hiệu hóa tài khoản nhân viên để vẫn có thông tin lịch sử ràng buộc.
+
+9. Xem và Lọc danh sách Tài sản
+
+Hệ thống cung cấp trang Danh sách Tài sản với các bộ lọc linh hoạt để Admin theo dõi tất cả tài sản trong công ty.
+
+Hiển thị danh sách: Mặc định, Admin sẽ thấy toàn bộ tài sản thuộc mọi phòng ban. Danh sách dạng bảng hiển thị các cột: Tên tài sản, Mã tài sản, Loại, Trạng thái (Trong kho/Đang sử dụng/Cần sửa/Lỗi thời,...), Nhân viên đang sử dụng (nếu có), Phòng ban sở hữu.
+
+Phân trang: Danh sách có thể được phân trang (ví dụ 20 tài sản/trang). Dùng các nút chuyển trang hoặc nhập số trang để xem thêm nếu có nhiều mục.
+
+Tìm kiếm nhanh theo tên/mã: Sử dụng ô tìm kiếm (text search) để lọc tài sản theo từ khóa tên hoặc mã. Hệ thống sẽ lọc theo ký tự nhập vào và chỉ hiển thị các tài sản phù hợp.
+
+Bộ lọc chi tiết: Có thể kết hợp nhiều tiêu chí lọc:
+
+Theo Phòng ban: Chọn một phòng ban từ danh sách để chỉ xem tài sản thuộc phòng ban đó.
+
+Theo Nhân viên đang giữ: Chọn một nhân viên (từ danh sách hoặc ô tìm tên) để xem các tài sản mà người đó đang được giao.
+
+Theo Trạng thái: Chọn trạng thái cụ thể (ví dụ: chỉ xem tài sản “Đang sử dụng”, hoặc “Cần sửa chữa”, “Lỗi thời”, “Trong kho”).
+
+Theo Loại tài sản: Chọn loại (ví dụ: chỉ xem Laptop, hoặc chỉ xem Điện thoại,...).
+
+Khi bạn thay đổi hoặc chọn các tiêu chí lọc, danh sách sẽ tự động cập nhật ngay (không cần tải lại trang). Nhờ đó Admin có thể dễ dàng tìm được nhóm tài sản mong muốn, ví dụ: “Tất cả Laptop của phòng IT đang cần sửa chữa” – chỉ cần lọc Loại = Laptop, Phòng ban = IT, Trạng thái = Cần sửa.
+
+Trường hợp không có kết quả: Nếu không có tài sản nào thỏa mãn bộ lọc đang chọn, hệ thống sẽ hiển thị thông báo như “Không tìm thấy tài sản nào phù hợp.” Bạn có thể điều chỉnh lại từ khóa hoặc bỏ bớt tiêu chí lọc để mở rộng kết quả.
+
+10. Xem Lịch sử thay đổi của Tài sản
+
+Mỗi tài sản đều có một lịch sử ghi lại những thay đổi và hoạt động liên quan (được tạo, được sửa, được gán/thu hồi, được đánh giá,...). Admin có thể xem lịch sử để kiểm tra chi tiết vòng đời của tài sản:
+
+Tại trang chi tiết của một tài sản (sau khi nhấn vào tên tài sản từ danh sách), tìm đến tab hoặc phần “Lịch sử” (có thể nằm dưới thông tin chính).
+
+Lịch sử hiển thị dưới dạng danh sách các sự kiện theo thứ tự thời gian (mới nhất ở trên). Mỗi dòng bao gồm:
+
+Ai thực hiện thay đổi (tên người dùng hệ thống, ví dụ: Trần Văn A - Admin).
+
+Hành động gì đã diễn ra (ví dụ: “đã tạo mới tài sản”, “đã chỉnh sửa thông tin tài sản”, “đã gán tài sản cho Nguyễn Thị B (Phòng Kế toán)”, “đã thu hồi tài sản từ Nguyễn Văn C”, “đã đánh giá tài sản: trạng thái Cần sửa, ghi chú: hỏng màn hình”).
+
+Khi nào (thời điểm thực hiện, ghi ngày giờ cụ thể).
+
+Nhờ lịch sử này, Admin có thể giám sát được toàn bộ quá trình sử dụng tài sản, ai đã dùng qua, những lần sửa chữa/đánh giá. Thông tin này hữu ích cho việc kiểm kê và truy xuất nguồn gốc mỗi tài sản.
+
+Phạm vi xem: Admin có thể xem lịch sử của tất cả tài sản. (Trưởng phòng chỉ xem được lịch sử tài sản thuộc phòng ban mình quản lý; nhân viên chỉ xem lịch sử các tài sản đang hoặc đã được giao cho chính họ).
+
+11. Xem Báo cáo Thống kê tài sản
+
+Hệ thống cung cấp chức năng báo cáo để Admin có cái nhìn tổng quan về tình hình tài sản trong toàn công ty, cũng như chi tiết theo từng nhân viên nếu cần.
+
+Truy cập trang Báo cáo: Vào menu “Báo cáo” hoặc “Thống kê”. Màn hình Dashboard sẽ hiển thị một số biểu đồ hoặc bảng thống kê.
+
+Báo cáo theo Phòng ban & Trạng thái: Một báo cáo chính là thống kê số lượng tài sản theo từng phòng ban và theo trạng thái hiện tại của tài sản. Ví dụ, báo cáo có thể hiển thị bảng với hàng là Phòng ban (Kỹ thuật, Kinh doanh, Nhân sự, ...), cột là Trạng thái (Trong kho, Đang sử dụng, Cần sửa, Lỗi thời), và các ô là số lượng tài sản tương ứng. Admin có thể dễ dàng thấy tổng tài sản mỗi phòng ban và tình trạng sử dụng (VD: Phòng Kỹ thuật có 50 tài sản, trong đó 40 đang sử dụng, 2 cần sửa, 8 trong kho,...).
+
+Báo cáo này có thể được trình bày dưới dạng bảng hoặc biểu đồ (ví dụ biểu đồ cột nhóm hoặc biểu đồ tròn tùy ý).
+
+Báo cáo chi tiết theo nhân viên: Admin cũng có thể tra cứu tài sản theo cá nhân. Trên giao diện báo cáo hoặc trang tài sản, có chức năng chọn một nhân viên cụ thể (thông qua hộp tìm tên hoặc danh sách nhân viên) để xem những tài sản mà người đó đang giữ. Hệ thống sẽ liệt kê danh sách các tài sản hiện gán cho nhân viên đó, bao gồm tên, mã, loại, giá trị, v.v. Điều này giúp Admin nắm được mỗi nhân viên đang sử dụng những thiết bị gì.
+
+Lọc báo cáo: Admin có quyền xem toàn bộ dữ liệu (không bị giới hạn theo phòng ban). Có thể có các bộ lọc thời gian hoặc phòng ban nếu muốn thu hẹp báo cáo, nhưng mặc định Admin sẽ thấy số liệu của cả công ty.
+
+Xuất báo cáo ra file: Hệ thống hỗ trợ xuất dữ liệu báo cáo ra file CSV/Excel. Ví dụ:
+
+Xuất bảng thống kê tài sản theo phòng ban/trạng thái.
+
+Xuất danh sách tài sản chi tiết theo nhân viên (có thể xuất cho một nhân viên hoặc tất cả tùy cấu hình hiện tại).
+
+Để xuất, nhấn nút “Xuất CSV” hoặc “Xuất Excel” tương ứng trên giao diện báo cáo. File xuất về sẽ chứa các cột dữ liệu theo đúng bảng thông kê đang xem. Admin có thể mở file này bằng Excel để lưu trữ hoặc phục vụ công tác báo cáo ngoài hệ thống.
+
+12. Sử dụng Chatbot hỗ trợ
+
+Hệ thống tích hợp một chatbot AI để hỗ trợ người dùng (bao gồm Admin) về quy trình quản lý tài sản và các thắc mắc liên quan:
+
+Truy cập chatbot: Trên giao diện ứng dụng (thường ở góc dưới màn hình) sẽ có biểu tượng chatbot hoặc trợ lý ảo. Admin có thể nhấn vào biểu tượng đó để mở cửa sổ chat.
+
+Đặt câu hỏi hoặc yêu cầu hỗ trợ: Gõ nội dung câu hỏi vào khung chat. Bạn có thể hỏi về quy trình hoặc quy định liên quan đến quản lý tài sản. Ví dụ:
+
+“Làm thế nào để gán tài sản cho nhân viên mới?”
+
+“Quy định về đánh giá tài sản hàng năm như thế nào?”
+
+“Tài sản bị hỏng thì quy trình xử lý ra sao?”
+
+Nhận câu trả lời: Chatbot AI sẽ phân tích câu hỏi và tìm kiếm câu trả lời trong tài liệu nội bộ đã được thiết lập (ví dụ: quy trình, chính sách công ty liên quan đến tài sản). Sau vài giây, chatbot sẽ hiện thị câu trả lời ngay trong cửa sổ chat, hướng dẫn các bước cần làm hoặc giải thích quy định cho bạn.
+
+Tương tác hội thoại: Bạn có thể tiếp tục đặt câu hỏi làm rõ thêm nếu cần. Chatbot hiểu ngữ cảnh ở mức cơ bản trong một phiên chat, nên bạn có thể hỏi tiếp những câu liên quan mà không cần lặp lại toàn bộ thông tin.
+
+Trường hợp không hiểu hoặc không có dữ liệu: Nếu chatbot không tìm thấy câu trả lời phù hợp, nó sẽ đưa ra phản hồi lịch sự, chẳng hạn: “Xin lỗi, tôi chưa hiểu yêu cầu. Bạn có thể nói rõ hơn không?” hoặc “Hiện tại tôi chưa có thông tin về vấn đề này.”. Bạn có thể thử đặt lại câu hỏi theo cách khác hoặc liên hệ bộ phận hỗ trợ nếu cần.
+
+Giới hạn của chatbot: Chatbot chỉ cung cấp thông tin hướng dẫn, không tự động thực hiện thao tác trong hệ thống thay cho người dùng. Ví dụ: nó có thể hướng dẫn cách gán tài sản nhưng bạn vẫn phải tự vào mục Gán tài sản để thực hiện. Chatbot được huấn luyện dựa trên quy định của công ty và hướng dẫn sử dụng hệ thống, vì vậy câu trả lời sẽ tuân theo những chính sách này (ví dụ: sẽ nhắc đúng người có quyền thực hiện một tác vụ nào đó).
+
+13. Thông báo tự động (Notifications)
+
+Hệ thống có chức năng gửi thông báo nhắc nhở liên quan đến quản lý tài sản, đặc biệt là việc đánh giá định kỳ tài sản. Với vai trò Admin:
+
+Nhận thông báo thay thế (nếu cần): Mặc định, các thông báo nhắc nhở đánh giá tài sản sẽ gửi cho Trưởng phòng quản lý tài sản đó. Tuy nhiên, trong trường hợp một phòng ban chưa có Trưởng phòng phụ trách, hệ thống có thể gửi thông báo đến Admin để đảm bảo tài sản không bị bỏ sót đánh giá. Do vậy, Admin nên chú ý kiểm tra thông báo nếu có tài sản thuộc phòng ban thiếu quản lý.
+
+Loại thông báo: Thông báo có thể ở dạng email gửi đến hòm thư Admin đã đăng ký, hoặc thông báo ngay trong hệ thống (ví dụ biểu tượng “chuông” trên giao diện). Nội dung thông báo thường ghi rõ:
+
+Tài sản nào sắp đến hạn cần đánh giá (tên, mã, người đang sử dụng, phòng ban).
+
+Thời hạn đánh giá (ví dụ: “... sẽ đến hạn đánh giá vào ngày DD/MM/YYYY” – thường là kỷ niệm 1 năm từ ngày mua hoặc mốc định kỳ do công ty quy định).
+
+Hướng dẫn: Admin (hoặc người có trách nhiệm) cần tiến hành đánh giá tài sản đó và cập nhật trạng thái (Tốt, Cần sửa, hoặc Lỗi thời) trên hệ thống.
+
+Link trực tiếp: Thông báo thường đính kèm đường dẫn nhanh vào trang chi tiết của tài sản để thực hiện đánh giá dễ dàng.
+
+Tần suất thông báo: Hệ thống lên lịch kiểm tra hàng ngày (vào giờ quy định, ví dụ nửa đêm) để tìm các tài sản sắp đến hạn đánh giá trong vòng 30 ngày tới. Mỗi tài sản chỉ tạo thông báo một lần trước 30 ngày. Do đó Admin không lo bị spam nhiều lần cho cùng một sự kiện. Sau khi đánh giá được thực hiện và cập nhật, vòng đời mới của tài sản sẽ được tính cho lần nhắc tiếp theo (ví dụ năm sau).
+
+Quản lý thông báo: Admin có thể xem tất cả thông báo trong mục Thông báo trên hệ thống. Sau khi xử lý xong, có thể đánh dấu “Đã đọc” hoặc xoá thông báo để dễ quản lý. Ngoài ra, nếu Admin nghỉ hoặc chuyển giao nhiệm vụ, cần đảm bảo có người tiếp nhận quản lý những thông báo này.
+
+Với các hướng dẫn trên, Admin có thể thiết lập và quản trị toàn bộ hệ thống quản lý tài sản một cách hiệu quả, đảm bảo dữ liệu luôn cập nhật và hỗ trợ các phòng ban sử dụng tài sản một cách minh bạch.

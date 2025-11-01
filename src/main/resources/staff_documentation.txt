@@ -1,0 +1,99 @@
+Hướng dẫn Sử dụng Hệ thống Quản lý Tài Sản
+
+Dành cho Nhân viên (Staff)
+
+Staff (Nhân viên) là người sử dụng thông thường, được cấp phát tài sản để phục vụ công việc hàng ngày. Nhân viên có quyền hạn hạn chế trên hệ thống quản lý tài sản. Thông thường, họ chỉ có thể xem những tài sản được giao cho mình, xem thông tin chi tiết và lịch sử liên quan, và sử dụng các chức năng hỗ trợ như chatbot. Dưới đây là hướng dẫn dành cho Nhân viên:
+
+1. Xem danh sách tài sản được giao cho bản thân
+
+Khi đăng nhập vào hệ thống, nhân viên có thể kiểm tra những tài sản nào hiện đang được cấp phát cho mình:
+
+Truy cập vào mục “Tài sản của tôi” (nếu có) hoặc vào “Danh sách Tài sản”. Hệ thống sẽ tự động lọc để chỉ hiển thị các tài sản mà bạn đang sử dụng.
+
+Danh sách này thường liệt kê tên tài sản, mã tài sản, loại, trạng thái và có thể kèm thông tin phòng ban sở hữu. Ví dụ, bạn có thể thấy: Laptop Dell XPS 13 - Mã: IT-001 - Trạng thái: Đang sử dụng - Phòng ban: IT. Nếu bạn được giao nhiều tài sản (ví dụ một laptop, một màn hình, một điện thoại), tất cả sẽ được liệt kê.
+
+Nếu hệ thống không có mục riêng cho tài sản của tôi, bạn có thể dùng bộ lọc theo tên nhân viên (tức là chính bạn) trên danh sách tài sản chung. Chọn bộ lọc nhân viên = [Tên của bạn], hệ thống sẽ hiển thị các tài sản gán cho bạn.
+
+Lưu ý: Nếu bạn không thấy tài sản của mình trong danh sách, có thể do chưa được cập nhật trên hệ thống hoặc bộ lọc chưa đúng. Hãy liên hệ Trưởng phòng hoặc Admin để kiểm tra.
+
+2. Xem chi tiết thông tin tài sản
+
+Nhân viên có thể xem chi tiết mỗi tài sản mình đang dùng để biết rõ hơn về thiết bị:
+
+Trong danh sách tài sản của bạn, nhấp vào tên tài sản hoặc biểu tượng xem chi tiết. Màn hình chi tiết tài sản sẽ hiện ra.
+
+Thông tin chi tiết bao gồm:
+
+Tên tài sản, Mã tài sản, Loại tài sản.
+
+Ngày mua (để biết tuổi đời thiết bị), Giá trị (tham khảo giá trị thiết bị).
+
+Trạng thái hiện tại (Đang sử dụng, Cần sửa chữa, Lỗi thời, v.v.).
+
+Phòng ban sở hữu (thường là phòng ban của bạn hoặc phòng quản lý thiết bị, ví dụ phòng IT quản lý laptop).
+
+Người đang sử dụng: Thông thường sẽ là chính bạn cho tài sản đang xem.
+
+Hình ảnh: Nếu có ảnh đính kèm (ví dụ ảnh thiết bị hoặc số serial), bạn có thể xem để đối chiếu.
+
+Kiểm tra thông tin này giúp bạn nắm rõ tài sản mình được giao (ví dụ biết mã tài sản để báo cáo, biết thiết bị này thuộc phòng ban nào quản lý).
+
+Lịch sử tài sản: Bạn cũng có thể xem tab “Lịch sử” (nếu được phép) để biết tài sản đã trải qua những gì:
+
+Ai đã giao nó cho bạn và khi nào.
+
+Trước đó có ai sử dụng chưa (nếu có lịch sử gán/thu hồi trước đó).
+
+Thiết bị đã từng được sửa chữa hay đánh giá ra sao (ví dụ: “Ngày 01/10/2025 – Trưởng phòng đánh giá Cần sửa chữa, ghi chú: thay pin”).
+
+Việc xem lịch sử giúp bạn hiểu tình trạng thiết bị: nếu nó từng hỏng và sửa, bạn sẽ biết để sử dụng cẩn thận hơn; nếu sắp đến hạn đánh giá, bạn cũng có thể chuẩn bị hợp tác (ví dụ mang máy đến cho Trưởng phòng kiểm tra).
+
+3. Trách nhiệm của nhân viên khi sử dụng tài sản
+
+Dù không phải là một chức năng phần mềm, nhưng quan trọng nhân viên hiểu vai trò của mình trong quy trình quản lý tài sản:
+
+Bạn có trách nhiệm giữ gìn tài sản được giao, sử dụng đúng mục đích công việc.
+
+Nếu phát hiện vấn đề với tài sản (hỏng hóc, mất mát, hoạt động không bình thường), hãy báo cáo ngay cho Trưởng phòng hoặc bộ phận IT phụ trách.
+
+Hệ thống hiện tại không có chức năng để nhân viên tự đánh dấu tài sản bị hỏng hoặc mất trực tiếp, nên việc thông báo thủ công là cần thiết. (Một số hệ thống cho phép nhân viên báo mất/hỏng trực tuyến, nhưng nếu không thấy chức năng đó, bạn cần thông báo qua email/điện thoại theo quy định công ty).
+
+Sau khi bạn báo, Trưởng phòng hoặc Admin sẽ tiến hành các bước như thu hồi tài sản, đánh giá tình trạng và sửa chữa/thay thế. Bạn nên phối hợp nộp lại thiết bị để kiểm tra nếu được yêu cầu.
+
+Khi bạn nghỉ việc hoặc chuyển bộ phận, hãy chắc chắn bàn giao lại tất cả tài sản cho quản lý. Hệ thống sẽ được cập nhật thu hồi những tài sản đó khỏi bạn. (Bạn có thể kiểm tra lại trên hệ thống xem còn tài sản nào dưới tên bạn không sau khi bàn giao).
+
+4. Sử dụng Chatbot hỗ trợ
+
+Nhân viên có thể tận dụng chatbot AI để được hướng dẫn về các quy trình liên quan đến tài sản:
+
+Mở chatbot (biểu tượng hỗ trợ trên màn hình).
+
+Đặt câu hỏi tự nhiên. Ví dụ:
+
+“Tôi cần làm gì khi laptop được công ty cấp bị hỏng?”
+
+“Quy trình bàn giao tài sản khi nghỉ việc như thế nào?”
+
+“Chính sách công ty về việc sử dụng tài sản ra sao?”
+
+Chatbot sẽ tra cứu trong tài liệu quy định và hướng dẫn của công ty để trả lời bạn. Chẳng hạn, với câu hỏi laptop hỏng, chatbot có thể trả lời: “Khi thiết bị được cấp phát bị hỏng, bạn cần thông báo ngay cho quản lý trực tiếp/Trưởng phòng. Họ sẽ thu hồi thiết bị để kiểm tra và cho bạn thiết bị thay thế nếu cần. Bạn không tự ý sửa chữa nếu không được phép.”
+
+Nếu bạn hỏi về quy định sử dụng, chatbot có thể nhắc nhở ví dụ: “Tài sản công ty cấp chỉ dùng cho công việc, không được tự ý trao đổi giữa các nhân viên nếu chưa có sự đồng ý của quản lý, ...” – tùy theo nội quy công ty.
+
+Chatbot là công cụ hỗ trợ 24/7, nên bạn có thể hỏi bất kỳ lúc nào. Tuy nhiên, nếu vấn đề quá cụ thể hoặc kỹ thuật (ví dụ thiết bị lỗi kỹ thuật cần chuyên môn), chatbot có thể không thay thế được người hỗ trợ thực tế. Lúc đó, hãy liên hệ bộ phận IT hoặc quản lý như bình thường.
+
+5. Giới hạn quyền của nhân viên trên hệ thống
+
+Quan trọng là nhân viên hiểu những gì mình không thể làm trên hệ thống quản lý tài sản (để tránh thắc mắc hoặc cố gắng thao tác không được phép):
+
+Nhân viên không thể tự tạo mới hoặc xóa/sửa tài sản trong hệ thống. Việc này do Admin/Trưởng phòng đảm nhiệm.
+
+Nhân viên không gán tài sản cho người khác được (bạn chỉ là người nhận, không phải người cấp phát).
+
+Bạn chỉ xem được thông tin các tài sản của chính bạn. Bạn không xem được tài sản của đồng nghiệp khác hoặc tài sản của phòng ban khác (trừ khi có quyền đặc biệt, nhưng mặc định vai trò Staff bị giới hạn để bảo mật).
+
+Nhân viên cũng không truy cập được các mục quản trị như Quản lý Người dùng, Quản lý Phòng ban, Báo cáo tổng, v.v.
+
+Nếu bạn thử truy cập các chức năng không thuộc quyền, hệ thống sẽ chặn lại hoặc ẩn hoàn toàn các menu đó.
+
+Hiểu rõ giới hạn này sẽ giúp bạn tập trung vào những tính năng dành cho mình và liên hệ đúng người khi cần hỗ trợ các tác vụ ngoài phạm vi.

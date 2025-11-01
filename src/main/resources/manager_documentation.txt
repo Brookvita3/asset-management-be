@@ -1,0 +1,193 @@
+Hướng dẫn Sử dụng Hệ thống Quản lý Tài Sản
+
+Dành cho Trưởng phòng (Manager)
+
+Manager (Trưởng phòng) là người quản lý tài sản trong phạm vi phòng ban của mình. Manager thường là trưởng bộ phận hoặc người được ủy quyền quản lý tài sản của phòng. Họ có quyền tạo và cập nhật tài sản thuộc phòng ban mình, gán/thu hồi tài sản cho nhân viên trong phòng, đánh giá tình trạng tài sản định kỳ, và xem các báo cáo liên quan đến phòng ban. Dưới đây là hướng dẫn cho Trưởng phòng:
+
+1. Thêm mới Tài sản thuộc phòng ban
+
+Trưởng phòng có thể chủ động thêm tài sản mới cho phòng ban mình (ví dụ khi bộ phận nhận thiết bị mới):
+
+Truy cập trang Tài sản: Đăng nhập với vai trò Manager, vào menu “Quản lý Tài sản” hoặc “Danh sách Tài sản”. Theo mặc định, hệ thống sẽ hiển thị tài sản trong phòng ban của bạn trước (bạn có thể thấy bộ lọc Phòng ban tự động chọn phòng của bạn).
+
+Thêm tài sản mới: Nhấn “Thêm tài sản mới”. Một form nhập thông tin hiện ra tương tự như với Admin (xem chi tiết các trường ở phần hướng dẫn Admin). Manager cần điền:
+
+Tên tài sản, Mã tài sản, Ngày mua, Giá trị, Loại tài sản, Hình ảnh (nếu có). Các lưu ý về tính hợp lệ (mã duy nhất, ngày mua không tương lai, giá trị dương, chọn loại,...) đều áp dụng như đã nêu.
+
+Lưu ý: Phòng ban sở hữu thường sẽ mặc định là phòng ban của Manager và có thể bị khóa không cho chỉnh (vì Manager chỉ tạo tài sản cho phòng mình quản lý).
+
+Nhấn “Lưu” để hoàn tất. Hệ thống sẽ lưu tài sản mới với trạng thái “Trong kho” và gán nó thuộc phòng ban của bạn. Bạn sẽ thấy tài sản xuất hiện trong danh sách phòng ban mình.
+
+Lưu ý: Manager chỉ có thể thêm tài sản cho phòng ban của chính mình. Nếu Manager thử truy cập phòng ban khác (bằng cách thay đổi bộ lọc phòng ban trên giao diện), họ có thể xem danh sách tài sản phòng khác nhưng sẽ không có nút “Thêm tài sản mới” hoặc không lưu được (bị chặn với thông báo lỗi) cho phòng ban không thuộc quyền quản lý. Điều này đảm bảo mỗi phòng ban được quản lý tài sản độc lập.
+
+2. Chỉnh sửa thông tin Tài sản của phòng ban
+
+Manager có thể chỉnh sửa các tài sản thuộc phòng ban mình, ví dụ cập nhật giá trị sau kiểm kê, bổ sung hình ảnh, sửa tên mô tả nếu cần:
+
+Vào Danh sách Tài sản, chắc chắn bộ lọc Phòng ban đang chọn phòng ban của bạn (hoặc chọn lại cho đúng).
+
+Chọn tài sản muốn chỉnh sửa (thuộc phòng bạn) và nhấn “Sửa” (hoặc mở chi tiết rồi chọn “Sửa”).
+
+Thay đổi thông tin cần thiết trong form. Lưu ý rằng Mã tài sản sẽ không được phép đổi. Một số hệ thống cũng không cho phép Manager đổi Phòng ban sở hữu (vì nếu muốn chuyển tài sản sang phòng khác, có thể cần sự can thiệp của Admin hoặc quy trình điều chuyển riêng).
+
+Nhấn “Lưu” để cập nhật. Hệ thống sẽ áp dụng thay đổi và lưu lịch sử. Nếu bạn cố chỉnh sửa tài sản không thuộc phòng bạn, hệ thống sẽ từ chối (có thể hiển thị thông báo “Bạn không có quyền chỉnh sửa tài sản này” hoặc nút Sửa sẽ không khả dụng).
+
+3. Gán tài sản cho nhân viên trong phòng
+
+Đây là một nhiệm vụ quan trọng của Trưởng phòng – cấp phát tài sản cho nhân viên của mình:
+
+Trong danh sách tài sản phòng ban, tìm tài sản trạng thái “Trong kho” cần giao. (Bạn có thể lọc trạng thái = Trong kho để dễ tìm).
+
+Nhấn chọn tài sản đó và chọn “Gán tài sản”. Hệ thống sẽ mở form gán.
+
+Phòng ban: Thông thường hệ thống sẽ mặc định phòng ban của bạn (Trưởng phòng chỉ có thể gán trong phạm vi phòng mình, nên trường này có thể cố định).
+
+Chọn nhân viên: Chọn nhân viên nhận tài sản từ danh sách nhân viên thuộc phòng ban. Danh sách này chỉ bao gồm nhân viên (hoặc cũng có thể bao gồm cả cấp phó, nhân viên quản lý dưới quyền nếu có) thuộc phòng của bạn.
+
+Ngày gán: Chọn ngày giao tài sản (thường là ngày hiện tại, có thể chỉnh nếu cần ghi nhận khác ngày).
+
+Nhấn “Xác nhận” để hoàn tất. Kết quả: Tài sản đổi trạng thái thành Đang sử dụng, hiển thị tên nhân viên đang giữ. Nhân viên đó khi đăng nhập sẽ thấy tài sản này trong danh sách của họ.
+
+Hệ thống ghi lại nhật ký: “Bạn (Tên Trưởng phòng) đã gán tài sản X cho Nhân viên Y vào thời gian Z.”
+
+Lưu ý: Một Trưởng phòng không thể gán tài sản cho nhân viên ở phòng ban khác. Nếu cố tình chọn phòng ban khác trên form (trong trường hợp form cho phép chọn), hệ thống sẽ không hiển thị danh sách nhân viên hoặc báo lỗi quyền hạn khi xác nhận. Bạn nên liên hệ Admin nếu cần chuyển tài sản sang người ở phòng ban khác. Ngoài ra, chỉ tài sản “Trong kho” (chưa ai dùng) mới gán được; nếu tài sản đang được người khác sử dụng, cần thu hồi trước.
+
+4. Thu hồi tài sản từ nhân viên trong phòng
+
+Khi nhân viên trong phòng bạn trả lại tài sản, hoặc cần thu hồi vì lý do nào đó, Trưởng phòng có thể cập nhật trên hệ thống:
+
+Trong danh sách, tìm tài sản đang Đang sử dụng mà bạn muốn thu hồi (có thể lọc theo tên nhân viên hoặc trạng thái để dễ dàng).
+
+Chọn tài sản, nhấn “Thu hồi”. Hệ thống sẽ hỏi xác nhận.
+
+Đồng ý thu hồi. Tài sản sẽ được đánh dấu là “Trong kho” lại và không còn gán cho ai. Lịch sử sẽ ghi nhận bạn đã thu hồi từ nhân viên nào, thời điểm nào.
+
+Sau khi thu hồi, tài sản có thể được luân chuyển hoặc để trong kho chờ phân phối lần sau. Nếu thu hồi do tài sản hỏng hoặc lỗi, bước tiếp theo có thể là cập nhật Đánh giá (xem phần dưới) để ghi nhận tình trạng tài sản.
+
+Ghi chú: Thu hồi tài sản thường đi kèm quy trình thực tế bên ngoài (ví dụ: lấy lại tài sản vật lý, kiểm tra tình trạng). Hãy đảm bảo nhân viên đã bàn giao đủ các phụ kiện liên quan. Nếu nhân viên nghỉ việc, hãy thu hồi tài sản trước khi họ rời công ty để tránh thất lạc. Hệ thống chỉ hỗ trợ ghi nhận, còn việc bàn giao thực tế cần do bạn quản lý.
+
+5. Đánh giá tài sản (Kiểm tra tình trạng tài sản)
+
+Trưởng phòng có trách nhiệm định kỳ hoặc đột xuất đánh giá tình trạng tài sản thuộc phòng mình, đặc biệt khi tài sản gặp sự cố hoặc đến kỳ kiểm kê:
+
+Tại Danh sách Tài sản của phòng, chọn một tài sản mà bạn muốn đánh giá. Tài sản có thể đang “Đang sử dụng” bởi nhân viên hoặc đang “Trong kho”.
+
+Nhấn “Đánh giá” (nếu có nút này trên giao diện cho tài sản đó). Một cửa sổ/biểu mẫu đánh giá sẽ hiện ra, hiển thị thông tin cơ bản của tài sản và trạng thái hiện tại.
+
+Chọn Trạng thái mới cho tài sản sau khi đánh giá:
+
+Tốt (hoặc Đang sử dụng tốt): Nếu tài sản vẫn hoạt động bình thường, không vấn đề gì.
+
+Cần sửa chữa: Nếu tài sản bị hỏng hóc, trục trặc cần được sửa.
+
+Lỗi thời: Nếu tài sản đã cũ, lạc hậu hoặc hỏng không thể sửa/không cần sửa, cần loại khỏi sử dụng (thanh lý hoặc lưu kho dài hạn).
+
+Nhập Ghi chú đánh giá: Mô tả ngắn gọn tình trạng hoặc kết quả kiểm tra. Lưu ý: Nếu bạn chọn trạng thái “Cần sửa chữa” hoặc “Lỗi thời”, thường hệ thống bắt buộc phải nhập lý do/ghi chú để giải thích rõ tình trạng (ví dụ: “Máy tính chạy chậm, cần nâng cấp RAM” hoặc “Thiết bị hỏng nặng, chi phí sửa cao, đề xuất thanh lý”). Nếu trạng thái vẫn “Tốt”, ghi chú có thể không bắt buộc nhưng bạn vẫn nên ghi (vd: “Kiểm tra định kỳ, mọi thứ bình thường”).
+
+Nhấn “Lưu đánh giá”. Hệ thống sẽ cập nhật Trạng thái của tài sản theo đánh giá mới.
+
+Ví dụ: nếu bạn đánh giá “Cần sửa chữa”, trạng thái tài sản đổi thành “Cần sửa”.
+
+Nếu “Lỗi thời”, trạng thái chuyển “Lỗi thời” (có thể tài sản không dùng nữa).
+
+Lịch sử tài sản sẽ ghi lại: bạn (Tên Trưởng phòng) đã đánh giá tài sản này, trạng thái mới là X, kèm ghi chú, và thời gian đánh giá.
+
+Ảnh hưởng sau đánh giá:
+
+Nếu tài sản đang được nhân viên sử dụng mà bạn đánh giá nó “Cần sửa” hoặc “Lỗi thời”, bạn nên thu hồi tài sản sớm để tiến hành sửa chữa hoặc ngừng sử dụng. (Hệ thống không tự động thu hồi khi đánh giá, do đó đây là bước quản lý thực tế bạn cần làm).
+
+Tài sản “Lỗi thời” thường sẽ không được gán cho người dùng nữa trừ khi có người Admin/Manager chủ động thay đổi trạng thái lại (ví dụ sau khi sửa xong có thể đánh giá lại thành Tốt).
+
+Tài sản “Cần sửa” sau khi được sửa xong, bạn có thể cập nhật lại trạng thái thành “Tốt” (bằng cách thực hiện đánh giá thêm lần nữa).
+
+Lưu ý quyền hạn: Chỉ Trưởng phòng của phòng ban sở hữu tài sản mới thấy và dùng được chức năng Đánh giá cho tài sản đó. Bạn sẽ không thể đánh giá tài sản thuộc phòng ban khác (nút “Đánh giá” sẽ ẩn hoặc không khả dụng đối với tài sản ngoài phạm vi quản lý). Trong trường hợp tài sản liên quan đến nhiều phòng (ví dụ mượn từ phòng khác), hãy phối hợp với Admin để đánh giá đúng nơi.
+
+6. Xem và Lọc danh sách Tài sản của phòng ban
+
+Trưởng phòng có thể xem danh sách tài sản, tương tự Admin nhưng với phạm vi mặc định giới hạn trong phòng ban mình:
+
+Danh sách tài sản phòng ban: Khi mở Danh sách Tài sản, hệ thống thường tự động lọc Phòng ban = [Tên phòng ban của bạn]. Bạn sẽ thấy tất cả tài sản mà phòng bạn sở hữu, bao gồm cả tài sản đang ở kho phòng ban và tài sản đang cấp phát cho nhân viên trong phòng.
+
+Bạn có thể sử dụng các bộ lọc tương tự như Admin (theo tên, theo trạng thái, theo loại tài sản). Việc tìm kiếm theo tên/mã cũng hoạt động trên tập tài sản của phòng.
+
+Xem tài sản phòng ban khác: Bạn có thể chọn bộ lọc Phòng ban khác để tham khảo tài sản ở phòng khác (nếu hệ thống cho phép). Tuy nhiên, hãy lưu ý:
+
+Bạn chỉ xem được tài sản phòng khác ở chế độ đọc (read-only). Những chức năng như Sửa, Gán, Thu hồi, Đánh giá sẽ không khả dụng cho bạn trên tài sản thuộc phòng khác.
+
+Danh sách phòng khác chủ yếu giúp bạn có cái nhìn liên phòng hoặc hỗ trợ kiểm kê chung nếu cần, nhưng trách nhiệm quản lý vẫn thuộc về Trưởng phòng tương ứng hoặc Admin.
+
+Không tìm thấy kết quả: Nếu phòng ban bạn không có tài sản nào hoặc bộ lọc quá hẹp, hệ thống sẽ báo “Không tìm thấy tài sản nào”. Bạn có thể bỏ bớt tiêu chí lọc hoặc kiểm tra lại chính xác tên mã.
+
+7. Xem Lịch sử thay đổi tài sản
+
+Trưởng phòng có thể xem lịch sử của các tài sản thuộc phòng mình để theo dõi các hoạt động:
+
+Vào trang chi tiết tài sản (thuộc phòng ban của bạn) và mở tab “Lịch sử”. Tại đây liệt kê tất cả sự kiện liên quan đến tài sản như:
+
+Tạo mới (ai tạo, khi nào).
+
+Chỉnh sửa thông tin (ai sửa, sửa những gì, khi nào).
+
+Gán cho nhân viên (do ai gán, gán cho ai, thời gian).
+
+Thu hồi (do ai, từ ai, thời gian).
+
+Đánh giá (ai đánh giá, kết quả thế nào, khi nào).
+
+Bạn có thể dễ dàng thấy tên người thực hiện (có thể là bạn, Admin hoặc đôi khi hệ thống tự động), và mô tả hành động. Ví dụ: “Nguyễn Văn A (Admin) đã chỉnh sửa tài sản (thay đổi Giá trị từ 10,000,000 thành 8,000,000) lúc 10:00 01/11/2025”.
+
+Lịch sử giúp bạn nắm bắt nhanh quá trình quản lý tài sản, phục vụ việc kiểm tra và báo cáo trong nội bộ phòng ban.
+
+8. Xem Báo cáo tài sản của phòng ban
+
+Trưởng phòng có quyền truy cập chức năng báo cáo nhưng giới hạn trong phạm vi phòng mình:
+
+Vào menu “Báo cáo”. Màn hình báo cáo hiển thị các thông tin tương tự như Admin nhưng đã lọc sẵn theo phòng ban của bạn.
+
+Báo cáo tài sản theo trạng thái: Bạn sẽ thấy thống kê số lượng tài sản của phòng ban bạn theo từng trạng thái (Tốt/Trong kho, Đang sử dụng, Cần sửa, Lỗi thời). Điều này giúp bạn nắm được tình hình chung: phòng bạn hiện có bao nhiêu tài sản đang dùng, bao nhiêu đang hỏng cần sửa, v.v.
+
+Báo cáo theo nhân viên: Bạn có thể chọn một nhân viên trong phòng để xem những tài sản người đó đang giữ. Báo cáo sẽ liệt kê chi tiết tương tự như phần Admin nhưng chỉ hiển thị nhân viên thuộc phòng bạn. Ví dụ: chọn nhân viên A của phòng, hệ thống liệt kê A đang có laptop mã X, điện thoại mã Y, v.v.
+
+Xuất báo cáo: Bạn có thể xuất dữ liệu báo cáo của phòng ban ra file CSV/Excel để lưu lại hoặc gửi cho cấp trên. Thao tác tương tự: nhấn “Xuất CSV” trên giao diện báo cáo. File xuất sẽ chỉ chứa dữ liệu của phòng bạn, không bao gồm phòng ban khác.
+
+Giới hạn quyền: Manager không thể xem dữ liệu tổng của toàn công ty (khác với Admin). Nếu bạn cố tình chọn phòng ban “Tất cả” (nếu có tùy chọn), hệ thống có thể hạn chế chỉ hiển thị phòng của bạn hoặc thông báo không có quyền. Mục đích là để bảo mật và khoanh vùng trách nhiệm quản lý.
+
+9. Sử dụng Chatbot hỗ trợ
+
+Trưởng phòng cũng được hỗ trợ bởi chatbot AI trong việc tìm hiểu quy định hoặc hướng dẫn sử dụng:
+
+Nhấn vào biểu tượng chatbot trên màn hình để mở cửa sổ chat.
+
+Đặt câu hỏi cho chatbot. Một số câu hỏi gợi ý:
+
+“Tôi cần làm gì khi tài sản trong phòng bị hỏng?”
+
+“Quy trình kiểm kê tài sản hàng năm thế nào?”
+
+“Cách thêm tài sản mới vào hệ thống?”
+
+“Làm sao để xuất báo cáo tài sản của phòng ban?”
+
+Chatbot sẽ trả lời dựa trên kiến thức đã có. Ví dụ, với câu hỏi tài sản hỏng, chatbot có thể hướng dẫn: “Khi tài sản bị hỏng, Trưởng phòng cần đánh giá tài sản đó với trạng thái ‘Cần sửa chữa’ và ghi chú nguyên nhân. Đồng thời thu hồi tài sản để gửi đi sửa. Sau khi sửa xong, cập nhật đánh giá lại thành ‘Tốt’. Nếu không sửa được, có thể đánh giá ‘Lỗi thời’ để chuẩn bị thanh lý.”
+
+Nếu câu hỏi nằm ngoài phạm vi hoặc chưa rõ, chatbot sẽ phản hồi để bạn đặt lại.
+
+Chatbot giúp bạn tra cứu nhanh mà không cần xem tài liệu giấy hoặc hỏi Admin, rất tiện lợi cho công việc hàng ngày.
+
+10. Nhận Thông báo nhắc nhở đánh giá tài sản
+
+Trưởng phòng sẽ nhận được thông báo tự động từ hệ thống liên quan đến việc đánh giá định kỳ tài sản:
+
+Thông báo đánh giá định kỳ: Mặc định, mỗi tài sản sẽ cần được đánh giá hàng năm một lần (hoặc theo chu kỳ do công ty quy định). Hệ thống sẽ gửi thông báo trước 30 ngày khi một tài sản thuộc phòng bạn sắp đến hạn đánh giá (tính từ ngày mua hoặc ngày đánh giá lần trước).
+
+Hình thức thông báo: Bạn sẽ nhận được email thông báo gửi tới địa chỉ email tài khoản của bạn, và/hoặc một thông báo trong ứng dụng (biểu tượng thông báo trên thanh công cụ).
+
+Nội dung: Thông báo nêu rõ “Tài sản [Tên] - Mã [XYZ] do [Nhân viên] đang sử dụng sẽ đến hạn đánh giá vào ngày [dd/mm/yyyy]. Vui lòng thực hiện đánh giá.” Kèm theo đó là liên kết để bạn nhấp thẳng tới trang chi tiết tài sản cần đánh giá.
+
+Xử lý thông báo: Khi nhận được thông báo, bạn nên chủ động lên kế hoạch kiểm tra tài sản đó. Trước hoặc đúng ngày hạn, thực hiện Đánh giá tài sản (theo các bước đã hướng dẫn ở mục Đánh giá tài sản). Sau khi đánh giá xong, tài sản sẽ được cập nhật mốc đánh giá mới (thường một năm sau) và thông báo cũ coi như đã được xử lý.
+
+Quản lý thông báo: Trên hệ thống, bạn có thể xem tất cả các thông báo chưa đọc. Sau khi bạn đánh giá xong tài sản, nên đánh dấu thông báo là “Đã đọc” hoặc xóa thông báo để dễ quản lý. Nếu lỡ bỏ qua thông báo, hệ thống có thể vẫn giữ mục nhắc đến khi bạn thực hiện hoặc Admin nhắc nhở.
+
+Trường hợp không có Trưởng phòng: (Dành cho Admin) Nếu phòng ban không có Manager, thông báo sẽ chuyển đến Admin để đảm bảo tài sản vẫn được đánh giá.
+
+Với hướng dẫn trên, Trưởng phòng có thể quản lý hiệu quả tài sản trong phạm vi của mình, đảm bảo nhân viên dưới quyền được cấp phát thiết bị đầy đủ và tài sản luôn trong trạng thái tốt hoặc được xử lý kịp thời khi có vấn đề.
