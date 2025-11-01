@@ -8,12 +8,11 @@ import com.example.demo.dto.asset.AssetRequest;
 import com.example.demo.dto.asset.AssetResponse;
 import com.example.demo.entity.Asset;
 import com.example.demo.entity.AssetType;
-import com.example.demo.entity.Department;
 import com.example.demo.entity.User;
 import com.example.demo.exception.DataNotFound;
+import com.example.demo.enums.AssetStatus;
 import com.example.demo.repository.AssetRepository;
 import com.example.demo.repository.AssetTypeRepository;
-import com.example.demo.repository.DepartmentRepository;
 import com.example.demo.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 public class AssetService {
     private final AssetRepository assetRepository;
     private final AssetTypeRepository assetTypeRepository;
-    private final DepartmentRepository departmentRepository;
     private final UserRepository userRepository;
 
     public void create(AssetRequest assetRequest) {
@@ -114,5 +112,28 @@ public class AssetService {
                 .createdBy(asset.getCreatedBy().getName())
                 .createdAt(asset.getCreatedAt())
                 .build()).toList();
+    }
+
+    public void assign(Long assetId, Long userId) {
+        Asset asset = assetRepository.findById(assetId)
+                .orElseThrow(() -> new DataNotFound("Asset not found"));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new DataNotFound("User not found"));
+
+        asset.setAssignedTo(user);
+        asset.setStatus(AssetStatus.IN_USE);
+
+        assetRepository.save(asset);
+    }
+
+    public void revoke(Long assetId) {
+        Asset asset = assetRepository.findById(assetId)
+                .orElseThrow(() -> new DataNotFound("Asset not found"));
+
+        asset.setAssignedTo(null);
+        asset.setStatus(AssetStatus.IN_STOCK);
+
+        assetRepository.save(asset);
     }
 }

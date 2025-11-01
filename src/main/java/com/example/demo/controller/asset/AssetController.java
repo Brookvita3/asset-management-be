@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.validation.BindingResult;
 
 import com.example.demo.dto.ResponseObject;
+import com.example.demo.dto.asset.AssetAssignRequest;
 import com.example.demo.dto.asset.AssetRequest;
 import com.example.demo.dto.asset.AssetResponse;
 import com.example.demo.service.AssetService;
@@ -23,7 +24,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/assets")
+@RequestMapping("/api/v1/assets")
 @RequiredArgsConstructor
 public class AssetController {
     private final AssetService assetService;
@@ -68,6 +69,28 @@ public class AssetController {
         assetService.update(id, assetRequest);
         return ResponseEntity.ok(ResponseObject.builder()
                 .message("Asset updated successfully")
+                .build());
+    }
+
+    @PostMapping("/{id}/assign")
+    public ResponseEntity<ResponseObject> assignAsset(@PathVariable("id") Long assetId,
+            @Valid @RequestBody AssetAssignRequest request,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return buildValidationErrorResponse(bindingResult);
+        }
+
+        assetService.assign(assetId, request.getUserId());
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("Asset assigned successfully")
+                .build());
+    }
+
+    @PostMapping("/{id}/revoke")
+    public ResponseEntity<ResponseObject> revokeAsset(@PathVariable("id") Long assetId) {
+        assetService.revoke(assetId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("Asset assignment revoked successfully")
                 .build());
     }
 
