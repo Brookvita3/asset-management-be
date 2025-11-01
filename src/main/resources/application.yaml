@@ -18,7 +18,3 @@ spring:
 jwt:
   secretKey: ${SECRET_KEY}
 
-zhipu:
-  api:
-    key: ${ZHIPU_API_KEY}
-    url: https://api.z.ai/api/paas/v4/chat/completions

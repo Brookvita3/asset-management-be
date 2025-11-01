@@ -32,7 +32,7 @@ public class JwtProvider {
                 .subject(user.getId().toString())
                 .claim("role", user.getRole().toString())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 100))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 100 * 100000000))
                 .signWith(key)
                 .compact();
     }

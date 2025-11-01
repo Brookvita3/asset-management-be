@@ -37,11 +37,11 @@ public class AssetRequest {
     @DecimalMin(value = "0.0", inclusive = false, message = "Asset value must be greater than zero")
     private BigDecimal value;
 
-    @NotNull(message = "Asset status is required")
-    private AssetStatus status;
+    // @NotNull(message = "Asset status is required")
+    private AssetStatus status = AssetStatus.IN_STOCK;
 
-    @NotNull(message = "Asset condition is required")
-    private AssetCondition condition;
+    // @NotNull(message = "Asset condition is required")
+    private AssetCondition condition = AssetCondition.GOOD;
 
     private String description;
 }

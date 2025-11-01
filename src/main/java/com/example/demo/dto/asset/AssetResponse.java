@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.Instant;
 
+import com.example.demo.enums.AssetCondition;
+import com.example.demo.enums.AssetStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,8 +24,8 @@ public class AssetResponse {
     private String assignedTo;
     private Date purchaseDate;
     private BigDecimal value;
-    private String status;
-    private String condition;
+    private AssetStatus status;
+    private AssetCondition condition;
     private String description;
     private String createdBy;
     private Instant createdAt;
