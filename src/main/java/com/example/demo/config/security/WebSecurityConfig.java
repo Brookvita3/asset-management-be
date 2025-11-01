@@ -29,14 +29,15 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/asset-types/**").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+        http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
