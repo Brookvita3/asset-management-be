@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,10 +8,13 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.asset.AssetRequest;
 import com.example.demo.dto.asset.AssetResponse;
 import com.example.demo.entity.Asset;
+import com.example.demo.entity.AssetHistory;
 import com.example.demo.entity.AssetType;
 import com.example.demo.entity.User;
-import com.example.demo.exception.DataNotFound;
+import com.example.demo.enums.AssetHistoryAction;
 import com.example.demo.enums.AssetStatus;
+import com.example.demo.exception.DataNotFound;
+import com.example.demo.repository.AssetHistoryRepository;
 import com.example.demo.repository.AssetRepository;
 import com.example.demo.repository.AssetTypeRepository;
 import com.example.demo.repository.UserRepository;
@@ -23,6 +27,7 @@ public class AssetService {
     private final AssetRepository assetRepository;
     private final AssetTypeRepository assetTypeRepository;
     private final UserRepository userRepository;
+    private final AssetHistoryRepository assetHistoryRepository;
 
     public void create(AssetRequest assetRequest) {
         AssetType type = assetTypeRepository.findById(assetRequest.getTypeId())
@@ -121,19 +126,48 @@ public class AssetService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new DataNotFound("User not found"));
 
+        AssetStatus previousStatus = asset.getStatus();
+
         asset.setAssignedTo(user);
         asset.setStatus(AssetStatus.IN_USE);
 
         assetRepository.save(asset);
+
+        AssetHistory history = AssetHistory.builder()
+                .asset(asset)
+                .actionType(AssetHistoryAction.ASSIGNED)
+                .performedAt(Instant.now())
+                .details(String.format("Assigned to user %d (%s)", user.getId(), user.getName()))
+                .previousStatus(previousStatus)
+                .newStatus(asset.getStatus())
+                .build();
+        assetHistoryRepository.save(history);
     }
 
     public void revoke(Long assetId) {
         Asset asset = assetRepository.findById(assetId)
                 .orElseThrow(() -> new DataNotFound("Asset not found"));
 
+        User currentUser = asset.getAssignedTo();
+        if (currentUser == null) {
+            throw new DataNotFound("Asset is not currently assigned to any user");
+        }
+
+        AssetStatus previousStatus = asset.getStatus();
+
         asset.setAssignedTo(null);
         asset.setStatus(AssetStatus.IN_STOCK);
 
         assetRepository.save(asset);
+
+        AssetHistory history = AssetHistory.builder()
+                .asset(asset)
+                .actionType(AssetHistoryAction.RECLAIMED)
+                .performedAt(Instant.now())
+                .details(String.format("Assignment reclaimed from user %d (%s)", currentUser.getId(), currentUser.getName()))
+                .previousStatus(previousStatus)
+                .newStatus(asset.getStatus())
+                .build();
+        assetHistoryRepository.save(history);
     }
 }
