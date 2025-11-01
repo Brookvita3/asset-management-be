@@ -56,7 +56,7 @@ public class ChatbotController {
                 );
             } else {
                 return ResponseEntity.badRequest()
-                    .body(ResponseObject.<ChatbotResponse>builder()
+                    .body(ResponseObject.builder()
                         .message(response.getMessage())
                         .data(null)
                         .build()
@@ -66,15 +66,15 @@ public class ChatbotController {
         } catch (RuntimeException e) {
             log.error("Chat error for user {}: {}", userId, e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(ResponseObject.<ChatbotResponse>builder()
-                    .message("Không tìm thấy người dùng: " + e.getMessage())
+                .body(ResponseObject.builder()
+                    .message("Lỗi server: " + e.getMessage())
                     .data(null)
                     .build()
                 );
         } catch (Exception e) {
             log.error("Internal server error during chat for user {}", userId, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ResponseObject.<ChatbotResponse>builder()
+                .body(ResponseObject.builder()
                     .message("Lỗi server: " + e.getMessage())
                     .data(null)
                     .build()
