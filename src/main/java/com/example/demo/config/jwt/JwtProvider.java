@@ -29,10 +29,10 @@ public class JwtProvider {
 
     public String generateToken(User user) {
         return Jwts.builder()
-                .subject(user.getId())
+                .subject(user.getId().toString())
                 .claim("role", user.getRole().toString())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 100))
                 .signWith(key)
                 .compact();
     }
@@ -43,8 +43,8 @@ public class JwtProvider {
                     .verifyWith(key)
                     .build()
                     .parseSignedClaims(token)
-                    .getPayload();}
-        catch (Exception e) {
+                    .getPayload();
+        } catch (Exception e) {
             throw new AuthException("Fail parses claims in token");
         }
     }
