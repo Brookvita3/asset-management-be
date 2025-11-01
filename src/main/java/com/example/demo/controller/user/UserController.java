@@ -31,6 +31,14 @@ public class UserController {
                 .build());
     }
 
+    @GetMapping("/department/{departmentId}")
+    public ResponseEntity<ResponseObject> getUsersByDepartment(@PathVariable Long departmentId) {
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseObject.builder()
+                .message("Get users by department successful")
+                .data(userService.getByDepartment(departmentId))
+                .build());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ResponseObject> updateUser(@PathVariable Long id, @RequestBody UserRequest request) {
         userService.update(id, request);

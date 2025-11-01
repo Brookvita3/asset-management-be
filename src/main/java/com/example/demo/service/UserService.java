@@ -59,4 +59,13 @@ public class UserService {
         user.setDepartment(department);
         userRepository.save(user);
     }
+
+    public List<UserResponse> getByDepartment(Long departmentId) {
+        Department department = departmentRepository.findById(departmentId)
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+
+        return userRepository.findByDepartmentId(department.getId()).stream()
+                .map(UserResponse::fromUser)
+                .toList();
+    }
 }
