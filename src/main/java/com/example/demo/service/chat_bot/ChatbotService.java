@@ -184,7 +184,7 @@ public class ChatbotService {
         // Create request payload
         String requestBody = String.format("""
                 {
-                    "model": "glm-4.5-air",
+                    "model": "glm-4.5-airx",
                     "messages": [
                         {
                             "role": "system",
