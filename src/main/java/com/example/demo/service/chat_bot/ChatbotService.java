@@ -24,6 +24,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -58,7 +59,8 @@ public class ChatbotService {
         } catch (IOException e) {
             log.error("Error reading {} documentation", role.name().toLowerCase(), e);
         }
-        return String.format("Bạn là một trợ lý AI hữu ích, chuyên hỗ trợ người dùng %s sử dụng hệ thống quản lý tài sản.",
+        return String.format(
+                "Bạn là một trợ lý AI hữu ích, chuyên hỗ trợ người dùng %s sử dụng hệ thống quản lý tài sản.",
                 getRoleDisplayName(role));
     }
 
@@ -72,16 +74,17 @@ public class ChatbotService {
     }
 
     private String buildContextPrompt(Long userId) {
-        // Lấy 10 tin nhắn gần nhất của user
+        // Lấy 10 tin nhắn gần nhất của user (đã sắp xếp theo createdAt DESC)
         List<Message> recentMessages = messageRepository.findTop10ByUserIdOrderByCreatedAtDesc(userId);
 
         StringBuilder contextBuilder = new StringBuilder();
         contextBuilder.append("NGỮ CẢNH HỘI THOẠI TRƯỚC ĐÓ (chỉ sử dụng nếu liên quan):\n");
 
-        // Đảo ngược danh sách để hiển thị theo thứ tự thời gian
-        List<Message> orderedMessages = recentMessages.reversed();
-
-        for (Message msg : orderedMessages) {
+        // Đảo ngược danh sách để hiển thị theo thứ tự thời gian (từ cũ nhất đến mới
+        // nhất)
+        // Sử dụng cách tiếp cận tương thích Java 17
+        for (int i = recentMessages.size() - 1; i >= 0; i--) {
+            Message msg = recentMessages.get(i);
             String role = msg.getDirection() == MessageDirection.QUESTION ? "User" : "Assistant";
             contextBuilder.append(role).append(": ").append(msg.getContent()).append("\n");
         }
@@ -108,6 +111,7 @@ public class ChatbotService {
                         5. Nếu không tìm thấy thông tin trong tài liệu, hãy đề xuất liên hệ hỗ trợ
                         6. Trả lời bằng tiếng Việt
                         7. Chỉ cung cấp thông tin và hướng dẫn phù hợp với quyền hạn của %s
+                        8. Với câu hỏi đơn giản thì đừng trả lời quá dài dòng, hãy ngắn gọn và súc tích.
                         """,
                 roleDisplayName, roleDisplayName.toUpperCase(), systemDoc, roleDisplayName, roleDisplayName);
     }
@@ -161,7 +165,7 @@ public class ChatbotService {
             // Chuyển đổi sang DTO
             return messages.stream()
                     .map(ChatHistoryResponse::fromMessage)
-                    .toList();
+                    .collect(Collectors.toList());
 
         } catch (RuntimeException e) {
             log.error("Error getting chat history for user {}: {}", userId, e.getMessage());
@@ -172,14 +176,15 @@ public class ChatbotService {
         }
     }
 
-    private String callZhipuAI(String userMessage, Long userId, Role userRole) throws IOException, InterruptedException {
+    private String callZhipuAI(String userMessage, Long userId, Role userRole)
+            throws IOException, InterruptedException {
         // Build context from recent messages
         String contextPrompt = buildContextPrompt(userId);
 
         // Create request payload
         String requestBody = String.format("""
                 {
-                    "model": "glm-4.6",
+                    "model": "glm-4.5-air",
                     "messages": [
                         {
                             "role": "system",
