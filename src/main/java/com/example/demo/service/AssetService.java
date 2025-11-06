@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.asset.EvaluateRequest;
+import com.example.demo.dto.asset.AssetHistoryResponse;
 import com.example.demo.dto.asset.AssetRequest;
 import com.example.demo.dto.asset.AssetResponse;
 import com.example.demo.entity.Asset;
@@ -50,6 +52,18 @@ public class AssetService {
                                 .description(assetRequest.getDescription())
                                 .build();
                 assetRepository.save(asset);
+
+                AssetHistory history = AssetHistory.builder()
+                                .asset(asset)
+                                .actionType(AssetHistoryAction.CREATED)
+                                .performedAt(Instant.now())
+                                .performedBy(user)
+                                .details(String.format("Created asset %d (%s)", asset.getId(), asset.getName()))
+                                .previousStatus(asset.getStatus())
+                                .newStatus(asset.getStatus())
+                                .build();
+                assetHistoryRepository.save(history);
+
         }
 
         public void update(Long id, AssetRequest assetRequest) {
@@ -76,12 +90,32 @@ public class AssetService {
                 asset.setDescription(assetRequest.getDescription());
 
                 assetRepository.save(asset);
+
+                AssetHistory history = AssetHistory.builder()
+                                .asset(asset)
+                                .actionType(AssetHistoryAction.UPDATED)
+                                .performedAt(Instant.now())
+                                .performedBy(user)
+                                .details(String.format("Updated asset %d (%s)", asset.getId(), asset.getName()))
+                                .previousStatus(asset.getStatus())
+                                .newStatus(asset.getStatus())
+                                .build();
+                assetHistoryRepository.save(history);
         }
 
         public void delete(Long id) {
                 Asset asset = assetRepository.findById(id)
                                 .orElseThrow(() -> new DataNotFound("Asset not found"));
                 assetRepository.delete(asset);
+                AssetHistory history = AssetHistory.builder()
+                                .asset(asset)
+                                .actionType(AssetHistoryAction.DELETED)
+                                .performedAt(Instant.now())
+                                .details(String.format("Deleted asset %d (%s)", asset.getId(), asset.getName()))
+                                .previousStatus(asset.getStatus())
+                                .newStatus(null)
+                                .build();
+                assetHistoryRepository.save(history);
         }
 
         public AssetResponse getById(Long id) {
@@ -147,6 +181,7 @@ public class AssetService {
                                 .asset(asset)
                                 .actionType(AssetHistoryAction.ASSIGNED)
                                 .performedAt(Instant.now())
+                                .performedBy(user)
                                 .details(String.format("Assigned to user %d (%s)", user.getId(), user.getName()))
                                 .previousStatus(previousStatus)
                                 .newStatus(asset.getStatus())
@@ -174,10 +209,49 @@ public class AssetService {
                                 .asset(asset)
                                 .actionType(AssetHistoryAction.RECLAIMED)
                                 .performedAt(Instant.now())
+                                .performedBy(currentUser)
                                 .details(String.format("Assignment reclaimed from user %d (%s)", currentUser.getId(),
                                                 currentUser.getName()))
                                 .previousStatus(previousStatus)
                                 .newStatus(asset.getStatus())
+                                .build();
+                assetHistoryRepository.save(history);
+        }
+
+        public List<AssetHistoryResponse> getAllAssetHistory() {
+                List<AssetHistory> histories = assetHistoryRepository.findAllByOrderByPerformedAtAsc();
+                return histories.stream().map(history -> AssetHistoryResponse.builder()
+                                .id(history.getId())
+                                .assetId(history.getAsset().getId())
+                                .actionType(history.getActionType().name())
+                                .performedBy(history.getPerformedBy() == null ? null : history.getPerformedBy().getId())
+                                .performedAt(history.getPerformedAt().toString())
+                                .details(history.getDetails())
+                                .notes(history.getNotes())
+                                .previousStatus(history.getPreviousStatus() == null ? null
+                                                : history.getPreviousStatus().name())
+                                .newStatus(history.getNewStatus() == null ? null : history.getNewStatus().name())
+                                .build()).toList();
+        }
+
+        public void evaluate(Long assetId, EvaluateRequest assetHistoryRequest) {
+                User user = userRepository.findById(assetHistoryRequest.getPerformedBy())
+                                .orElseThrow(() -> new DataNotFound("User not found"));
+                Asset asset = assetRepository.findById(assetId)
+                                .orElseThrow(() -> new DataNotFound("Asset not found"));
+
+                asset.setCondition(assetHistoryRequest.getCondition());
+                assetRepository.save(asset);
+
+                AssetHistory history = AssetHistory.builder()
+                                .asset(asset)
+                                .actionType(AssetHistoryAction.EVALUATED)
+                                .performedAt(Instant.now())
+                                .performedBy(user)
+                                .details(String.format("Evaluated asset id %d (%s)", asset.getId(), asset.getName()))
+                                .previousStatus(asset.getStatus())
+                                .newStatus(asset.getStatus())
+                                .notes(assetHistoryRequest.getNotes())
                                 .build();
                 assetHistoryRepository.save(history);
         }

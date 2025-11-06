@@ -1,6 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.User;
+import com.example.demo.enums.Role;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByDepartmentId(Long departmentId);
 
-    // count users in a department
+    User findByDepartmentIdAndRole(Long departmentId, Role role);
+
     Long countByDepartmentId(Long departmentId);
+
 }

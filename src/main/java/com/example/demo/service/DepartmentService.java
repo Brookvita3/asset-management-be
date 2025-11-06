@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.department.DepartmentRequest;
 import com.example.demo.dto.department.DepartmentResponse;
 import com.example.demo.entity.Department;
+import com.example.demo.enums.Role;
 import com.example.demo.exception.DataNotFound;
 import com.example.demo.repository.DepartmentRepository;
 import com.example.demo.repository.UserRepository;
@@ -62,9 +63,19 @@ public class DepartmentService {
     public List<DepartmentResponse> getAll() {
         // Update employee counts before returning
         List<Department> departments = departmentRepository.findAll();
+
         for (Department dept : departments) {
             Integer employeeCount = Math.toIntExact(userRepository.countByDepartmentId(dept.getId()));
             dept.setEmployeeCount(employeeCount);
+            // nếu manager id null thì tìm manager bằng cách tìm user có department id =
+            // dept id và role = "MANAGER"
+            if (dept.getManagerId() == null) {
+                var manager = userRepository.findByDepartmentIdAndRole(dept.getId(), Role.MANAGER);
+                if (manager != null) {
+                    dept.setManagerId(manager.getId());
+                }
+            }
+
         }
         return departments.stream()
                 .map(DepartmentResponse::fromEntity)

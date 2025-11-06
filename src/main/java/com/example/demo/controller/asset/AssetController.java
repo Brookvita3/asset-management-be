@@ -3,6 +3,7 @@ package com.example.demo.controller.asset;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,11 @@ import org.springframework.validation.BindingResult;
 
 import com.example.demo.dto.ResponseObject;
 import com.example.demo.dto.asset.AssetAssignRequest;
+import com.example.demo.dto.asset.EvaluateRequest;
+import com.example.demo.dto.asset.AssetHistoryResponse;
 import com.example.demo.dto.asset.AssetRequest;
 import com.example.demo.dto.asset.AssetResponse;
+import com.example.demo.entity.AssetHistory;
 import com.example.demo.service.AssetService;
 
 import jakarta.validation.Valid;
@@ -112,5 +116,24 @@ public class AssetController {
                         .message("Validation failed")
                         .data(errors)
                         .build());
+    }
+
+    @GetMapping("/history")
+    public ResponseEntity<ResponseObject> getAllAssetHistory() {
+        List<AssetHistoryResponse> assetHistory = assetService.getAllAssetHistory();
+        return ResponseEntity.ok()
+                .body(ResponseObject.builder()
+                        .data(assetHistory)
+                        .message("Asset history fetched successfully")
+                        .build());
+    }
+
+    @PostMapping("/{id}/evaluate")
+    public ResponseEntity<ResponseObject> evaluateAsset(@PathVariable("id") Long assetId,
+            @RequestBody EvaluateRequest assetHistoryRequest) {
+        assetService.evaluate(assetId, assetHistoryRequest);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("Asset evaluated successfully")
+                .build());
     }
 }
