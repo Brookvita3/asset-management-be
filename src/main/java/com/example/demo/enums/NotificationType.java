@@ -3,6 +3,8 @@ package com.example.demo.enums;
 public enum NotificationType {
     INFO,
     WARNING,
-    ERROR
+    ERROR,
+    USER_CREATED,
+    USER_UPDATED
 }
 
