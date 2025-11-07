@@ -15,10 +15,14 @@ import com.example.demo.entity.AssetType;
 import com.example.demo.entity.User;
 import com.example.demo.enums.AssetHistoryAction;
 import com.example.demo.enums.AssetStatus;
+import com.example.demo.enums.NotificationType;
 import com.example.demo.exception.DataNotFound;
+import com.example.demo.entity.Notification;
+import com.example.demo.entity.Department;
 import com.example.demo.repository.AssetHistoryRepository;
 import com.example.demo.repository.AssetRepository;
 import com.example.demo.repository.AssetTypeRepository;
+import com.example.demo.repository.NotificationRepository;
 import com.example.demo.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +34,7 @@ public class AssetService {
         private final AssetTypeRepository assetTypeRepository;
         private final UserRepository userRepository;
         private final AssetHistoryRepository assetHistoryRepository;
+        private final NotificationRepository notificationRepository;
 
         public void create(AssetRequest assetRequest) {
                 AssetType type = assetTypeRepository.findById(assetRequest.getTypeId())
@@ -187,6 +192,42 @@ public class AssetService {
                                 .newStatus(asset.getStatus())
                                 .build();
                 assetHistoryRepository.save(history);
+
+                // Tạo notification cho user được assign
+                Notification notification = Notification.builder()
+                                .user(user)
+                                .asset(asset)
+                                .title("Tài sản đã được gán cho bạn")
+                                .message(String.format("Tài sản %s (%s) đã được gán cho bạn. Mã tài sản: %s",
+                                                asset.getName(), asset.getType().getName(), asset.getCode()))
+                                .type(NotificationType.INFO)
+                                .isRead(false)
+                                .build();
+                notificationRepository.save(notification);
+
+                // Tạo notification cho manager của department (nếu có)
+                if (user.getDepartment() != null) {
+                        Department department = user.getDepartment();
+                        if (department.getManagerId() != null) {
+                                User manager = userRepository.findById(department.getManagerId())
+                                                .orElse(null);
+                                if (manager != null) {
+                                        Notification managerNotification = Notification.builder()
+                                                        .user(manager)
+                                                        .asset(asset)
+                                                        .title("Tài sản đã được gán cho nhân viên trong phòng ban")
+                                                        .message(String.format(
+                                                                        "Tài sản %s (%s) đã được gán cho %s trong phòng ban %s. Mã tài sản: %s",
+                                                                        asset.getName(), asset.getType().getName(),
+                                                                        user.getName(), department.getName(),
+                                                                        asset.getCode()))
+                                                        .type(NotificationType.INFO)
+                                                        .isRead(false)
+                                                        .build();
+                                        notificationRepository.save(managerNotification);
+                                }
+                        }
+                }
         }
 
         public void revoke(Long assetId) {
@@ -216,6 +257,18 @@ public class AssetService {
                                 .newStatus(asset.getStatus())
                                 .build();
                 assetHistoryRepository.save(history);
+
+                // Tạo notification cho user bị thu hồi
+                Notification notification = Notification.builder()
+                                .user(currentUser)
+                                .asset(asset)
+                                .title("Tài sản đã được thu hồi")
+                                .message(String.format("Tài sản %s (%s) đã được thu hồi từ bạn. Mã tài sản: %s",
+                                                asset.getName(), asset.getType().getName(), asset.getCode()))
+                                .type(NotificationType.WARNING)
+                                .isRead(false)
+                                .build();
+                notificationRepository.save(notification);
         }
 
         public List<AssetHistoryResponse> getAllAssetHistory() {
