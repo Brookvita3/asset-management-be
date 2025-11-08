@@ -14,6 +14,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("SELECT m FROM Message m WHERE m.user.id = :userId ORDER BY m.createdAt DESC")
     List<Message> findRecentMessagesByUserId(@Param("userId") Long userId);
 
-    @Query("SELECT m FROM Message m WHERE m.user.id = :userId ORDER BY m.createdAt DESC LIMIT 10")
-    List<Message> findTop10ByUserIdOrderByCreatedAtDesc(@Param("userId") Long userId);
+    @Query("SELECT m FROM Message m WHERE m.user.id = :userId ORDER BY m.createdAt DESC LIMIT 4")
+    List<Message> findTop4ByUserIdOrderByCreatedAtDesc(@Param("userId") Long userId);
 }

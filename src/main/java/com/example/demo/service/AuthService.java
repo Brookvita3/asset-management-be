@@ -27,6 +27,10 @@ public class AuthService {
             throw new AuthException("Invalid username or password");
         }
 
+        if (!user.getActive()) {
+            throw new AuthException("User account is inactive");
+        }
+
         String token = jwtProvider.generateToken(user);
 
         return new LoginResponse(token);
