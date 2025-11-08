@@ -7,9 +7,13 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.department.DepartmentRequest;
 import com.example.demo.dto.department.DepartmentResponse;
 import com.example.demo.entity.Department;
+import com.example.demo.entity.Notification;
+import com.example.demo.entity.User;
+import com.example.demo.enums.NotificationType;
 import com.example.demo.enums.Role;
 import com.example.demo.exception.DataNotFound;
 import com.example.demo.repository.DepartmentRepository;
+import com.example.demo.repository.NotificationRepository;
 import com.example.demo.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +24,7 @@ public class DepartmentService {
 
     private final DepartmentRepository departmentRepository;
     private final UserRepository userRepository;
+    private final NotificationRepository notificationRepository;
 
     public void create(DepartmentRequest request) {
         Department department = Department.builder()
@@ -43,6 +48,27 @@ public class DepartmentService {
         department.setEmployeeCount(request.getEmployeeCount());
 
         departmentRepository.save(department);
+
+        // Tạo notification cho manager của department (nếu có)
+        if (department.getManagerId() != null) {
+            User manager = userRepository.findById(department.getManagerId())
+                    .orElse(null);
+            if (manager != null) {
+                Notification notification = Notification.builder()
+                        .user(manager)
+                        .asset(null)
+                        .title("Phòng ban đã được cập nhật")
+                        .message(String.format(
+                                "Phòng ban %s đã được cập nhật thông tin. Tên phòng ban: %s, Mô tả: %s, Số nhân viên: %d",
+                                department.getName(), department.getName(),
+                                department.getDescription() != null ? department.getDescription() : "Không có mô tả",
+                                department.getEmployeeCount()))
+                        .type(NotificationType.INFO)
+                        .isRead(false)
+                        .build();
+                notificationRepository.save(notification);
+            }
+        }
     }
 
     public void delete(Long id) {
