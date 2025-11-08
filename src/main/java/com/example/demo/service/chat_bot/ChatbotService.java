@@ -75,7 +75,7 @@ public class ChatbotService {
 
     private String buildContextPrompt(Long userId) {
         // Lấy 10 tin nhắn gần nhất của user (đã sắp xếp theo createdAt DESC)
-        List<Message> recentMessages = messageRepository.findTop10ByUserIdOrderByCreatedAtDesc(userId);
+        List<Message> recentMessages = messageRepository.findTop4ByUserIdOrderByCreatedAtDesc(userId);
 
         StringBuilder contextBuilder = new StringBuilder();
         contextBuilder.append("NGỮ CẢNH HỘI THOẠI TRƯỚC ĐÓ (chỉ sử dụng nếu liên quan):\n");
@@ -104,14 +104,18 @@ public class ChatbotService {
                         %s
 
                         HƯỚNG DẪN TRẢLỜI:
+                        - Trả lời bằng văn bản thuần (plain text)
+                        - KHÔNG dùng Markdown, KHÔNG dùng ký hiệu định dạng (*, **, #, ```).
+                        - Không chèn HTML, không prefix kiểu "Assistant:".
                         1. Luôn trả lời một cách thân thiện và chuyên nghiệp với vai trò %s
-                        2. Sử dụng tài liệu hệ thống ở trên để cung cấp thông tin chính xác
-                        3. Nếu cần, sử dụng ngữ cảnh hội thoại trước đó (chỉ khi liên quan)
-                        4. Hướng dẫn chi tiết từng bước cho người dùng
-                        5. Nếu không tìm thấy thông tin trong tài liệu, hãy đề xuất liên hệ hỗ trợ
-                        6. Trả lời bằng tiếng Việt
-                        7. Chỉ cung cấp thông tin và hướng dẫn phù hợp với quyền hạn của %s
-                        8. Với câu hỏi đơn giản thì đừng trả lời quá dài dòng, hãy ngắn gọn và súc tích.
+                        2. Đối với những câu hỏi ko cần dùng đến tài liệu hệ thống, hãy trả lời dựa trên kiến thức chung của bạn hoặc nếu câu hỏi chỉ là chào hỏi bình thường thì bạn chỉ cần đáp lại ngắn gọn thân thiện trong một vài câu là được.
+                        3. Sử dụng tài liệu hệ thống ở trên để cung cấp thông tin chính xác
+                        4. Nếu cần, sử dụng ngữ cảnh hội thoại trước đó (chỉ khi liên quan)
+                        5. Hướng dẫn chi tiết từng bước cho người dùng
+                        6. Nếu không tìm thấy thông tin trong tài liệu, hãy đề xuất liên hệ hỗ trợ
+                        7. Trả lời bằng tiếng Việt
+                        8. Chỉ cung cấp thông tin và hướng dẫn phù hợp với quyền hạn của %s
+                        9. Cố gắng trả lời ngắn gọn nhất có thể mà vẫn đầy đủ ý nghĩa
                         """,
                 roleDisplayName, roleDisplayName.toUpperCase(), systemDoc, roleDisplayName, roleDisplayName);
     }
@@ -134,6 +138,7 @@ public class ChatbotService {
 
             // Gọi AI API với role của user
             String aiResponse = callZhipuAI(request.getMessage(), userId, user.getRole());
+            aiResponse = normalizePlain(aiResponse);
 
             // Lưu câu trả lời của AI
             Message botMessage = Message.builder()
@@ -245,4 +250,55 @@ public class ChatbotService {
                 .replace("\r", "\\r")
                 .replace("\t", "\\t");
     }
+
+    private String normalizePlain(String s) {
+        if (s == null)
+            return "";
+        String out = s;
+
+        // Chuẩn hóa newline & BOM & NBSP
+        out = out.replace("\r\n", "\n").replace("\r", "\n").replace("\u00A0", " ");
+        if (!out.isEmpty() && out.charAt(0) == '\uFEFF')
+            out = out.substring(1);
+
+        // Loại block code fence: ```lang\n...\n``` -> giữ nguyên nội dung bên trong
+        out = out.replaceAll("```[a-zA-Z0-9_-]*\\s*([\\s\\S]*?)\\s*```", "$1");
+        // Inline code: `code` -> code
+        out = out.replaceAll("`([^`]+)`", "$1");
+
+        // Heading: ### Title -> Title (giữ dòng trống trước/sau cho dễ đọc)
+        out = out.replaceAll("(?m)^\\s{0,3}#{1,6}\\s*", "");
+        // Blockquote: > text -> text
+        out = out.replaceAll("(?m)^\\s*>+\\s?", "");
+
+        // Bold/italic: **x** -> x ; *x* -> x ; __x__ -> x ; _x_ -> x
+        out = out.replaceAll("\\*\\*(.*?)\\*\\*", "$1");
+        out = out.replaceAll("__(.*?)__", "$1");
+        out = out.replaceAll("(?<!\\*)\\*(?!\\*)(.*?) (?<!\\*)\\*(?!\\*)", "$1"); // phòng ít TH lệch
+        out = out.replaceAll("_(.*?)_", "$1");
+
+        // Link: [text](url) -> text (url)
+        out = out.replaceAll("\\[([^\\]]+)\\]\\(([^)]+)\\)", "$1 ($2)");
+        // Image: ![alt](url) -> [Image: alt] (url)
+        out = out.replaceAll("!\\[([^\\]]*)\\]\\(([^)]+)\\)", "[Image: $1] ($2)");
+
+        // Horizontal rule
+        out = out.replaceAll("(?m)^(?:-{3,}|_{3,}|\\*{3,})\\s*$", "");
+
+        // Table: bỏ hàng căn lề |---|:---:|; thay '|' bằng khoảng trắng
+        out = out.replaceAll("(?m)^\\|?\\s*:?-{3,}:?\\s*(\\|\\s*:?-{3,}:?\\s*)+\\|?\\s*$", "");
+        out = out.replaceAll("\\s*\\|\\s*", "  ");
+
+        // Bullet: chuẩn hóa đầu dòng "-text" -> "- text"
+        out = out.replaceAll("(?m)^\\s*[-*+]([^\\s])", "- $1");
+
+        // Xóa dòng chỉ là timestamp HH:MM ở cuối (nếu có)
+        out = out.replaceAll("(?:\\n|\\A)(\\d{2}:\\d{2})\\s*$", "");
+
+        // Gom nhiều dòng trống
+        out = out.replaceAll("\\n{3,}", "\n\n");
+
+        return out.stripTrailing();
+    }
+
 }
