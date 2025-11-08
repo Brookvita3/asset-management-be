@@ -14,4 +14,5 @@ public class UserRequest {
     private String password;
     private Role role;
     private Long departmentId;
+    private Boolean active;
 }

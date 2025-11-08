@@ -57,6 +57,7 @@ public class UserService {
         user.setName(userRequest.getName());
         user.setRole(userRequest.getRole());
         user.setDepartment(department);
+        user.setActive(userRequest.getActive());
         userRepository.save(user);
     }
 
