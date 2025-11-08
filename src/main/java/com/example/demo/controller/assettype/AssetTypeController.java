@@ -17,7 +17,7 @@ import com.example.demo.service.AssetTypeService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/asset-types")
+@RequestMapping("/api/v1/asset-types")
 @RequiredArgsConstructor
 public class AssetTypeController {
 

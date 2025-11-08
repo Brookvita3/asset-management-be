@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/chatbot")
+@RequestMapping("/api/v1/chatbot")
 @RequiredArgsConstructor
 @Slf4j
 @Tag(name = "Chatbot API", description = "API để giao tiếp với chatbot hỗ trợ hệ thống")
