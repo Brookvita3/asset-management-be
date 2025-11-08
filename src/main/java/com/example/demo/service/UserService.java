@@ -49,7 +49,7 @@ public class UserService {
                 .department(department)
                 .build();
         User savedUser = userRepository.save(user);
-        
+
         // Gửi thông báo cho người dùng mới được tạo
         createNotificationForUser(savedUser, NotificationType.USER_CREATED);
     }
@@ -64,8 +64,10 @@ public class UserService {
         user.setName(userRequest.getName());
         user.setRole(userRequest.getRole());
         user.setDepartment(department);
+        user.setActive(userRequest.getActive());
+        userRepository.save(user);
         User updatedUser = userRepository.save(user);
-        
+
         // Gửi thông báo cho người dùng được cập nhật
         createNotificationForUser(updatedUser, NotificationType.USER_UPDATED);
     }
@@ -85,7 +87,7 @@ public class UserService {
     private void createNotificationForUser(User user, NotificationType type) {
         String title;
         String message;
-        
+
         if (type == NotificationType.USER_CREATED) {
             title = "Tài khoản của bạn đã được tạo";
             message = String.format("Xin chào %s, tài khoản của bạn đã được tạo thành công bởi quản trị viên. " +
@@ -104,7 +106,7 @@ public class UserService {
         } else {
             return; // Không tạo thông báo cho các loại khác
         }
-        
+
         Notification notification = Notification.builder()
                 .user(user)
                 .asset(null)
@@ -114,7 +116,7 @@ public class UserService {
                 .isRead(false)
                 .linkUrl("/profile") // Link đến trang profile của user
                 .build();
-        
+
         notificationRepository.save(notification);
     }
 }
